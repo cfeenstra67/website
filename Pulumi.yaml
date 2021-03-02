@@ -1,0 +1,6 @@
+name: blog
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: My Personal Blog

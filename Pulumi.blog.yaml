@@ -1,0 +1,6 @@
+encryptionsalt: v1:1x0pTpNM4nE=:v1:nwTtnyEQGHFbE8NM:3p8pSc8zVADIEefzcoGgast7GJuVVg==
+config:
+  aws:region: us-east-2
+  blog:dns-name: camfeenstra.com
+  blog:gmail-verification-code:
+    secure: v1:e5NIWr2V+KO9ijiP:83jRZKwZLnWaFS4CJLroEULqWSNpdMidx0ExANMAkk7HjC86RgJWpSZRJIS0hOa5gmBvbRDjcCy+1Qn5vUjMq/tMkZ7T5FN8j3/pBzTRP/hzIOXKyXvnTkhE9Oc4UaGr
