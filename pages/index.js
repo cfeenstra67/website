@@ -1,32 +1,34 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Date from '../components/date'
-import Layout, { siteTitle } from '../components/layout'
+import Layout, { siteTitle, myName } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 
 import { getSortedPostsData } from '../lib/posts'
+import { getMarkdownContent, getDataFromMarkdown } from '../lib/content'
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
+  const introMd = getMarkdownContent('intro')
+  const intro = await getDataFromMarkdown(introMd)
   return {
     props: {
-      allPostsData
+      allPostsData,
+      intro
     }
   }
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData, intro }) {
   return (
-    <Layout home>
+    <Layout>
       <Head>
-        <title>About Me - Cam Feenstra</title>
+        <title>About Me - {myName}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>My name is Cam Feenstra. I am a software engineer, currently working for People.ai
-        in San Francisco. I use this website to write about my projects and interests. If you find
-        the content here interesting, please 
-        </p>
-      </section>
+
+      <header className={utilStyles.headingXl}>{intro.title}</header>
+
+      <section className={utilStyles.headingMd} dangerouslySetInnerHTML={{ __html: intro.contentHtml }} />
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>

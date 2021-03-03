@@ -11,7 +11,16 @@
 
 .navbarItem {
     display: block;
-    padding: 8px 12px;
+    padding: 4px 8px;
+    margin: 12px;
+    border-radius: 12px;
+    color: #1B004D;
+}
+
+.navbarItem:hover {
+    background-color: #1B004D;
+    text-decoration: none;
+    color: #DDFEFF;
 }
 
 .title {
@@ -21,8 +30,24 @@
     background-color: #1B004D;
     margin-bottom: 20px;
     text-decoration: none;
+    padding: 8px;
 }
 
 .title:hover {
     text-decoration: none;
+}
+
+.navLink {
+
+}
+
+.navLink:hover {
+    text-decoration: none;
+}
+
+.mailingListItem {
+    bottom: 0;
+    position: absolute;
+    margin-bottom: 12px;
+    width: calc(100% - 22px);
 }

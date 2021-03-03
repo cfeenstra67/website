@@ -49,13 +49,13 @@ One thing resources have in common in any infrastructure-as-code tool is they fi
 
 The **declarative** configuration that is provided to Terraform, Pulumi, or other infrastructure as code tools can be described as a set of finite state machines that depend on one another. In fact, for those with a little bit of familiarity with graph theory we can describe this graph of dependencies as a **directed acyclic graph**, commonly abbreviated as DAG. For those without any, the concept is intuitive: this just means that none of the dependencies in the configuration form a cycle with one another; a simple example of one such configuration with some resources named A, B, C, D, and E would be:
 
-![Simple DAG diagram](/images/how-infra-as-code-works-2.png)
+![Simple DAG diagram](/images/how-infra-as-code-works-7.png)
 
 In the declarative configuration given to the infrastructure-as-code tool, the configuration of **A** depends on the states of **B** and **C**, and the configuration of **C** depends on the states of **D** and **E**.
 
 Now, the interesting question is how we would actually go about creating the set of resources with this configuration. Since the configuration of **A** depends on the state of **B**, certainly we cannot create **A** until **B** has already been created--otherwise we wouldn’t fully know the correct configuration values! The same goes for any of the dependencies displayed in the diagram above. To formalize that a bit more, it is useful to visualize what these transitions would look like in the same diagram:
 
-![State creation diagram](/images/how-infra-as-code-works-3.png)
+![State creation diagram](/images/how-infra-as-code-works-2.png)
 
 Here each node has been expanded to show that its “in” edges imply that it depends on the “after transition” states of other resources and its “out” edges imply that another resource’s configuration depends on its output state. In using this visualization, it is clear that there is some implied dependency between the transitions. If we remove the configuration and “new state” nodes while keeping all the same dependencies, we are left with a graph showing us how transitions for each resource depend on one another:
 
@@ -66,17 +66,17 @@ This looks familiar--it is the same as the dependency diagram for the initial co
 
 This exercise gets interesting when we reason through what has to happen given some new configuration, with new dependencies. As an example, assume we have a new configuration that we’d like to migrate our state to that looks like this:
 
-![Configuration diagram](/images/how-infra-as-code-works-5.png)
+![Configuration diagram](/images/how-infra-as-code-works-6.png)
 
 Now instead of the previous dependencies **B**’s configuration depends on the states of **C**, **D**, and **E**. We’re attempting to apply this configuration immediately after the previous one has been applied successfully. It is no longer trivial to determine what order we have to update each of these nodes’ configurations in: if one resource depends on another _in the previous_ configuration, the resource it depends on should not be changed until it is no longer depended on--consider a security group in AWS. AWS Instances can be bound to security groups, which would translate to a dependency in the configuration between the two. If we tried to delete the security group before the instance no longer depended on it, the operation would fail and manual intervention would be required. Considering how common this sort of case is, if infrastructure-as-code tools didn’t take this into account they would not be very useful and would often fail to execute their operations successfully.
 
 Because we need to take these dependencies into account, we need to build the diagram including both states and transitions required to migrate to the desired configuration taking the previous state’s dependencies into account. The way we do this is relatively simple: we include them as edges alongside the edges implied by the configuration, but we reverse them:
 
-![New Transition Diagram](/images/how-infra-as-code-works-6.png)
+![New Transition Diagram](/images/how-infra-as-code-works-3.png)
 
 If we reduce this diagram down to the transitions while retaining the dependencies, we get the following:
 
-![New Transition Diagram 2](/images/how-infra-as-code-works-7.png)
+![New Transition Diagram 2](/images/how-infra-as-code-works-5.png)
 
 This tells us what order each of the transitions need to be executed in order to properly respect both the old and new configuration dependencies.
 

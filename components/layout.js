@@ -5,10 +5,10 @@ import styles from './layout.module.css'
 import NavBar from './navbar'
 import utilStyles from '../styles/utils.module.css'
 
-const name = 'Cam Feenstra'
-export const siteTitle = 'Cam Feenstra - Personal Website'
+export const myName = 'Cam Feenstra'
+export const siteTitle = `${myName} - Personal Website`
 
-export default function Layout({ children, home }) {
+export default function Layout({ children }) {
   return (
     <>
       <NavBar />
