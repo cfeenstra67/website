@@ -11,3 +11,6 @@ build-site:
 	npm run build
 
 build: build-lambda build-images build-site
+
+fmt:
+	black lambda_handler.py generate_images.py infra

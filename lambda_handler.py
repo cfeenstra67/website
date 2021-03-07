@@ -10,5 +10,5 @@ def handle(event, context):
 
     if url != "/" and not has_extension.search(url):
         request["uri"] = f"{url}.html"
- 
-    return request   
+
+    return request
