@@ -3,19 +3,23 @@ import Link from 'next/link'
 
 import Date from '../../components/date'
 import Layout, { myName } from '../../components/layout'
+import { getMarkdownContent, markdownToHtml } from '../../lib/content'
 import { getSortedPostsData } from '../../lib/posts'
 import utilStyles from '../../styles/utils.module.css'
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
+  const postsIntroMd = getMarkdownContent('posts-intro')
+  const postsIntroHtml = await markdownToHtml(postsIntroMd)
   return {
     props: {
-      allPostsData
+      allPostsData,
+      postsIntroHtml
     }
   }
 }
 
-export default function Posts({ allPostsData }) {
+export default function Posts({ allPostsData, postsIntroHtml }) {
   return (
     <Layout>
       <Head>
@@ -23,6 +27,8 @@ export default function Posts({ allPostsData }) {
       </Head>
 
       <header className={utilStyles.headingXl}>Blog Posts</header>
+
+      <section className={utilStyles.headingMd} dangerouslySetInnerHTML={{ __html: postsIntroHtml }} />
 
       <section className={utilStyles.headingMd}>
         <ul className={utilStyles.list}>

@@ -15,7 +15,7 @@ export default function Layout({ children }) {
       <div className={styles.container}>
         <div className={styles.content}>
           <Head>
-            <link rel="icon" href="/images/profile.jpg" />
+            <link rel="icon" href="/images/generated/icon.png" />
             <meta
               name="description"
               content="Cam Feenstra's personal website."

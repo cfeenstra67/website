@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import styles from './navbar.module.css'
+import { JOIN_MAILING_LIST_URL } from '../lib/config'
 
 export default function NavBar() {
   return (
@@ -34,11 +35,9 @@ export default function NavBar() {
         </a>
       </Link>
 
-      <Link href="#">
-        <a className={styles.navLink}>
-          <div className={`${styles.navbarItem} ${styles.mailingListItem}`}>Join my Mailing List</div>
-        </a>
-      </Link>
+      <a href={JOIN_MAILING_LIST_URL} target="_blank" className={styles.navLink}>
+        <div className={`${styles.navbarItem} ${styles.mailingListItem}`}>Join my Mailing List</div>
+      </a>
     </div>
   )
 }
