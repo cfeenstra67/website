@@ -23,7 +23,7 @@ export default function Quotes({ quotesHtml }) {
 
       <header className={utilStyles.headingXl}>Quotes</header>
 
-      <section className={utilStyles.headingMd} dangerouslySetInnerHTML={{ __html: quotesHtml }} />
+      <section dangerouslySetInnerHTML={{ __html: quotesHtml }} />
     </Layout>
   )
 }

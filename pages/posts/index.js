@@ -28,7 +28,7 @@ export default function Posts({ allPostsData, postsIntroHtml }) {
 
       <header className={utilStyles.headingXl}>Blog Posts</header>
 
-      <section className={utilStyles.headingMd} dangerouslySetInnerHTML={{ __html: postsIntroHtml }} />
+      <section dangerouslySetInnerHTML={{ __html: postsIntroHtml }} />
 
       <section className={utilStyles.headingMd}>
         <ul className={utilStyles.list}>

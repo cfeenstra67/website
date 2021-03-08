@@ -28,7 +28,7 @@ export default function Home({ allPostsData, intro }) {
 
       <header className={utilStyles.headingXl}>{intro.title}</header>
 
-      <section className={utilStyles.headingMd} dangerouslySetInnerHTML={{ __html: intro.contentHtml }} />
+      <section dangerouslySetInnerHTML={{ __html: intro.contentHtml }} />
 
     </Layout>
   )

@@ -149,15 +149,15 @@ Then they came for me—and there was no one left to speak for me.
 > Wherever a process of life communicates an eagerness to him who lives it, there the life becomes genuinely significant
 > - William James
 
-> Some people meet death with open arms
-> And thank god their time has come
-> Others beg for just one more day
-> Saying there’s much to be done.
-> But if we, before an act, would think of death
-> Of death, of judgement, and of all such things
-> I’m sure we would do our best
-> So that our time comes
-> We may say take me lord, without delay
+> Some people meet death with open arms  
+> And thank god their time has come  
+> Others beg for just one more day  
+> Saying there’s much to be done.  
+> But if we, before an act, would think of death  
+> Of death, of judgement, and of all such things  
+> I’m sure we would do our best  
+> So that our time comes  
+> We may say take me lord, without delay  
 > - Cathy Cesnik
 
 > The greatest shortcoming of the human race is our inability to understand the exponential function.
@@ -277,7 +277,7 @@ Then they came for me—and there was no one left to speak for me.
 > And so hold on when there is nothing in you  
 >   Except the Will which says to them: ‘Hold on!’  
 > 
-> If you can talk with crowds and keep your virtue,    
+> If you can talk with crowds and keep your virtue,  
 >   Or walk with Kings—nor lose the common touch,  
 > If neither foes nor loving friends can hurt you,  
 >   If all men count with you, but none too much;  
@@ -396,7 +396,7 @@ Then they came for me—and there was no one left to speak for me.
 > - Nietzsche
 
 > Life can be much broader once you discover one simple fact: Everything around you that you call life was made up by people that were no smarter than you. And you can change it, you can influence it… Once you learn that, you'll never be the same again.
-> — Steve Jobs
+> - Steve Jobs
 
 > Poco a poco se anda lejos (Little by little, one goes far).
 > - Spanish Proverb
@@ -455,7 +455,7 @@ Then they came for me—and there was no one left to speak for me.
 > - Anthony de Mello, Awakening: Conversations with the Masters
 
 > There was an exhausted woodcutter who kept wasting time and energy chopping wood with a blunt ax because he did not have the time, he said, to stop and sharpen the blade.
-> - Anthony de Mello, Taking Flight
+> - Anthony de Mello, Taking Flight
 
 > The main thing that I learned about conspiracy theory, is that conspiracy theorists believe in a conspiracy because that is more comforting. The truth of the world is that it is actually chaotic. The truth is that it is not The Iluminati, or The Jewish Banking Conspiracy, or the Gray Alien Theory. 
 > The truth is far more frightening - Nobody is in control. 

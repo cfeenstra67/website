@@ -13,4 +13,4 @@ build-site:
 build: build-lambda build-images build-site
 
 fmt:
-	black lambda_handler.py generate_images.py infra
+	venv/bin/black lambda_handler.py generate_images.py infra

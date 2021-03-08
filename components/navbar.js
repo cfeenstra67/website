@@ -10,34 +10,39 @@ export default function NavBar() {
         <Link href="/"><a className={styles.title}>Cam Feenstra</a></Link>
       </div>
 
-      <Link href="/">
-        <a className={styles.navLink}>
-          <div className={styles.navbarItem}>About Me</div>
+      <div className={styles.linkContainer}>
+
+        <Link href="/">
+          <a className={styles.navLink}>
+            <div className={styles.navbarItem}>About Me</div>
+          </a>
+        </Link>
+
+
+        <Link href="/posts">
+          <a className={styles.navLink}>
+            <div className={styles.navbarItem}>Blog Posts</div>
+          </a>
+        </Link>
+
+        <Link href="/quotes">
+          <a className={styles.navLink}>
+            <div className={styles.navbarItem}>Quotes</div>
+          </a>
+        </Link>
+
+        <Link href="/contact">
+          <a className={styles.navLink}>
+            <div className={styles.navbarItem}>Contact</div>
+          </a>
+        </Link>
+
+        <a href={JOIN_MAILING_LIST_URL} target="_blank" className={styles.navLink}>
+          <div className={`${styles.navbarItem} ${styles.mailingListItem}`}>Join my Mailing List</div>
         </a>
-      </Link>
 
+      </div>
 
-      <Link href="/posts">
-        <a className={styles.navLink}>
-          <div className={styles.navbarItem}>Blog Posts</div>
-        </a>
-      </Link>
-
-      <Link href="/quotes">
-        <a className={styles.navLink}>
-          <div className={styles.navbarItem}>Quotes</div>
-        </a>
-      </Link>
-
-      <Link href="/contact">
-        <a className={styles.navLink}>
-          <div className={styles.navbarItem}>Contact</div>
-        </a>
-      </Link>
-
-      <a href={JOIN_MAILING_LIST_URL} target="_blank" className={styles.navLink}>
-        <div className={`${styles.navbarItem} ${styles.mailingListItem}`}>Join my Mailing List</div>
-      </a>
     </div>
   )
 }

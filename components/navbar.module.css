@@ -1,3 +1,4 @@
+
 .navbar {
     position: fixed;
     display: flex;
@@ -50,4 +51,10 @@
     position: absolute;
     margin-bottom: 12px;
     width: calc(100% - 22px);
+}
+
+@media only screen and (max-width: 800px) {
+    .navbar {
+        left: -250px;
+    }
 }

@@ -2,6 +2,12 @@
   margin-left: 250px;
 }
 
+@media only screen and (max-width: 800px) {
+    .container {
+        margin-left: 0;
+    }
+}
+
 .content {
   /*max-width: 48rem;*/
   padding: 0 1rem;
