@@ -71,11 +71,18 @@ def main():
 
     site_dir = "out"
 
-    site_bucket = aws.s3.Bucket(
+    root_bucket = aws.s3.Bucket(
         dns_name + "-site-bucket",
         bucket=dns_name,
+        acl="private",
+        website={"redirect_all_requests_to": f"https://{full_dns_name}"},
+    )
+
+    site_bucket = aws.s3.Bucket(
+        full_dns_name + "-site-bucket",
+        bucket=full_dns_name,
         acl="public-read",
-        website={"error_document": "404.html", "index_document": "index.html"},
+        website={"index_document": "index.html"},
     )
 
     logs_bucket = aws.s3.Bucket(
@@ -207,6 +214,20 @@ def main():
             {
                 "name": cloudfront_distribution.domain_name,
                 "zone_id": cloudfront_distribution.hosted_zone_id,
+                "evaluate_target_health": True,
+            }
+        ],
+    )
+
+    root_website_record = aws.route53.Record(
+        dns_name,
+        name=dns_name,
+        zone_id=zone.zone_id,
+        type="A",
+        aliases=[
+            {
+                "name": f"s3-website.{aws_region.name}.amazonaws.com",
+                "zone_id": root_bucket.hosted_zone_id,
                 "evaluate_target_health": True,
             }
         ],
