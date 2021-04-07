@@ -1,7 +1,8 @@
 import Head from 'next/head'
 
-import Layout, { myName } from '../components/layout'
+import Layout from '../components/layout'
 import Markdown from '../components/markdown'
+import Config from '../lib/config'
 import { getMarkdownContent, markdownToHtml } from '../lib/content'
 import utilStyles from '../styles/utils.module.css'
 
@@ -10,16 +11,17 @@ export async function getStaticProps() {
   const contactHtml = await markdownToHtml(contactMd)
   return {
     props: {
-      contactHtml
+      contactHtml,
+      config: Config()
     }
   }
 }
 
-export default function Contact({ contactHtml }) {
+export default function Contact({ contactHtml, config }) {
   return (
-    <Layout>
+    <Layout config={config}>
       <Head>
-        <title>Quotes - {myName}</title>
+        <title>Quotes - {config.MY_NAME}</title>
       </Head>
 
       <header className={utilStyles.headingXl}>Contact</header>

@@ -3,13 +3,12 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 
 import styles from './navbar.module.css'
-import { JOIN_MAILING_LIST_URL } from '../lib/config'
 
-export default function NavBar() {
+export default function NavBar({ config }) {
   return (
     <Navbar bg="dark" variant="dark" expand="md" sticky="top">
       <Navbar.Brand href="/">
-        <a className={styles.title}>Cam Feenstra</a>
+        <span className={styles.title}>Cam Feenstra</span>
       </Navbar.Brand>
 
       <Navbar.Toggle aria-controls="site-nav" />
@@ -33,7 +32,7 @@ export default function NavBar() {
           </Nav.Item>
 
           <Nav.Item>
-            <a href={JOIN_MAILING_LIST_URL} target="_blank" className="nav-link">
+            <a href={config.JOIN_MAILING_LIST_URL} target="_blank" className="nav-link">
               <div className={`${styles.mailingListItem}`}>Join my Mailing List</div>
             </a>
           </Nav.Item>

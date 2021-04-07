@@ -1,7 +1,8 @@
 import Head from 'next/head'
 
-import Layout, { myName } from '../components/layout'
+import Layout from '../components/layout'
 import Markdown from '../components/markdown'
+import Config from '../lib/config'
 import { getMarkdownContent, markdownToHtml } from '../lib/content'
 import utilStyles from '../styles/utils.module.css'
 
@@ -10,16 +11,17 @@ export async function getStaticProps() {
   const quotesHtml = await markdownToHtml(quotesMd)
   return {
     props: {
-      quotesHtml
+      quotesHtml,
+      config: Config()
     }
   }
 }
 
-export default function Quotes({ quotesHtml }) {
+export default function Quotes({ quotesHtml, config }) {
   return (
-    <Layout>
+    <Layout config={config}>
       <Head>
-        <title>Quotes - {myName}</title>
+        <title>Quotes - {config.MY_NAME}</title>
       </Head>
 
       <header className={utilStyles.headingXl}>Quotes</header>

@@ -7,10 +7,9 @@ import styles from './layout.module.css'
 import NavBar from './navbar'
 import utilStyles from '../styles/utils.module.css'
 
-export const myName = 'Cam Feenstra'
-export const siteTitle = `${myName} - Personal Website`
+export default function Layout({ children, config }) {
+  const siteTitle = `${config.MY_NAME} - Personal Website`
 
-export default function Layout({ children }) {
   return (
     <>
       <Head>
@@ -24,9 +23,27 @@ export default function Layout({ children }) {
           content="width=device-width, initial-scale=1.0"
         />
         <meta name="og:title" content={siteTitle} />
+
+        {/* Global Site Tag (gtag.js) - Google Analytics */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${config.GOOGLE_ANALYTICS_MEASUREMENT_ID}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '${config.GOOGLE_ANALYTICS_MEASUREMENT_ID}');
+        `,
+          }}
+        />
+
       </Head>
 
-      <NavBar />
+      <NavBar config={config} />
       <Container>
         {children}
       </Container>

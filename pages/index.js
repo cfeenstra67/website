@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Date from '../components/date'
-import Layout, { siteTitle, myName } from '../components/layout'
+import Layout from '../components/layout'
 import Markdown from '../components/markdown'
+import Config from '../lib/config'
 import utilStyles from '../styles/utils.module.css'
 
 import { getSortedPostsData } from '../lib/posts'
@@ -15,16 +16,17 @@ export async function getStaticProps() {
   return {
     props: {
       allPostsData,
-      intro
+      intro,
+      config: Config()
     }
   }
 }
 
-export default function Home({ allPostsData, intro }) {
+export default function Home({ allPostsData, intro, config }) {
   return (
-    <Layout>
+    <Layout config={config}>
       <Head>
-        <title>About Me - {myName}</title>
+        <title>About Me - {config.MY_NAME}</title>
       </Head>
 
       <header className={utilStyles.headingXl}>{intro.title}</header>

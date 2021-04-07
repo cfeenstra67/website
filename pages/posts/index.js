@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import Date from '../../components/date'
-import Layout, { myName } from '../../components/layout'
+import Layout from '../../components/layout'
 import Markdown from '../../components/markdown'
+import Config from '../../lib/config'
 import { getMarkdownContent, markdownToHtml } from '../../lib/content'
 import { getSortedPostsData } from '../../lib/posts'
 import utilStyles from '../../styles/utils.module.css'
@@ -15,21 +16,20 @@ export async function getStaticProps() {
   return {
     props: {
       allPostsData,
-      postsIntroHtml
+      postsIntroHtml,
+      config: Config()
     }
   }
 }
 
-export default function Posts({ allPostsData, postsIntroHtml }) {
+export default function Posts({ allPostsData, postsIntroHtml, config }) {
   return (
-    <Layout>
+    <Layout config={config}>
       <Head>
-        <title>Blog Posts - {myName}</title>
+        <title>Blog Posts - {config.MY_NAME}</title>
       </Head>
 
       <header className={utilStyles.headingXl}>Blog Posts</header>
-
-
 
       <section>
         <Markdown htmlContent={postsIntroHtml} />
