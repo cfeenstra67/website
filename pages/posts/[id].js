@@ -2,6 +2,7 @@ import Head from 'next/head'
 
 import Date from '../../components/date'
 import Layout from '../../components/layout'
+import Markdown from '../../components/markdown'
 import { getAllPostIds, getPostData } from '../../lib/posts'
 import utilStyles from '../../styles/utils.module.css'
 
@@ -14,7 +15,7 @@ export default function Post({ postData }) {
 
       <h1 className={utilStyles.centered}>{postData.title}</h1>
       <Date dateString={postData.date} />
-      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      <Markdown htmlContent={postData.contentHtml} />
     </Layout>
   )
 }

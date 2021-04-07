@@ -1,29 +1,4 @@
 
-.navbar {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    background: #DDFEFF;
-    flex: 1;
-    top: 0;
-    height: 100%;
-    width: 250px;
-}
-
-.navbarItem {
-    display: block;
-    padding: 4px 8px;
-    margin: 12px;
-    border-radius: 12px;
-    color: #1B004D;
-}
-
-.navbarItem:hover {
-    background-color: #1B004D;
-    text-decoration: none;
-    color: #DDFEFF;
-}
-
 .title {
     font-size: 24px;
     font-weight: 800;
@@ -36,25 +11,5 @@
 
 .title:hover {
     text-decoration: none;
-}
-
-.navLink {
-
-}
-
-.navLink:hover {
-    text-decoration: none;
-}
-
-.mailingListItem {
-    bottom: 0;
-    position: absolute;
-    margin-bottom: 12px;
-    width: calc(100% - 22px);
-}
-
-@media only screen and (max-width: 800px) {
-    .navbar {
-        left: -250px;
-    }
+    color: #DDFEFF;
 }

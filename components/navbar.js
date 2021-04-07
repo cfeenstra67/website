@@ -1,48 +1,47 @@
 import Link from 'next/link'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
 
 import styles from './navbar.module.css'
 import { JOIN_MAILING_LIST_URL } from '../lib/config'
 
 export default function NavBar() {
   return (
-    <div className={styles.navbar}>
-      <div className={styles.title}>
-        <Link href="/"><a className={styles.title}>Cam Feenstra</a></Link>
-      </div>
+    <Navbar bg="dark" variant="dark" expand="md" sticky="top">
+      <Navbar.Brand href="/">
+        <a className={styles.title}>Cam Feenstra</a>
+      </Navbar.Brand>
 
-      <div className={styles.linkContainer}>
+      <Navbar.Toggle aria-controls="site-nav" />
 
-        <Link href="/">
-          <a className={styles.navLink}>
-            <div className={styles.navbarItem}>About Me</div>
-          </a>
-        </Link>
+      <Navbar.Collapse id="site-nav">
+        <Nav>
+          <Nav.Item>
+            <Nav.Link href="/">About Me</Nav.Link>
+          </Nav.Item>
 
+          <Nav.Item>
+            <Nav.Link href="/posts">Blog Posts</Nav.Link>
+          </Nav.Item>
 
-        <Link href="/posts">
-          <a className={styles.navLink}>
-            <div className={styles.navbarItem}>Blog Posts</div>
-          </a>
-        </Link>
+          <Nav.Item>
+            <Nav.Link href="/quotes">Quotes</Nav.Link>
+          </Nav.Item>
 
-        <Link href="/quotes">
-          <a className={styles.navLink}>
-            <div className={styles.navbarItem}>Quotes</div>
-          </a>
-        </Link>
+          <Nav.Item>
+            <Nav.Link href="/contact">Contact</Nav.Link>
+          </Nav.Item>
 
-        <Link href="/contact">
-          <a className={styles.navLink}>
-            <div className={styles.navbarItem}>Contact</div>
-          </a>
-        </Link>
+          <Nav.Item>
+            <a href={JOIN_MAILING_LIST_URL} target="_blank" className="nav-link">
+              <div className={`${styles.mailingListItem}`}>Join my Mailing List</div>
+            </a>
+          </Nav.Item>
 
-        <a href={JOIN_MAILING_LIST_URL} target="_blank" className={styles.navLink}>
-          <div className={`${styles.navbarItem} ${styles.mailingListItem}`}>Join my Mailing List</div>
-        </a>
+        </Nav>
 
-      </div>
+      </Navbar.Collapse>
 
-    </div>
+    </Navbar>
   )
 }

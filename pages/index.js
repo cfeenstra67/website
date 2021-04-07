@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Date from '../components/date'
 import Layout, { siteTitle, myName } from '../components/layout'
+import Markdown from '../components/markdown'
 import utilStyles from '../styles/utils.module.css'
 
 import { getSortedPostsData } from '../lib/posts'
@@ -28,7 +29,9 @@ export default function Home({ allPostsData, intro }) {
 
       <header className={utilStyles.headingXl}>{intro.title}</header>
 
-      <section dangerouslySetInnerHTML={{ __html: intro.contentHtml }} />
+      <section>
+        <Markdown htmlContent={intro.contentHtml} />
+      </section>
 
     </Layout>
   )

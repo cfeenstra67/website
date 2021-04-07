@@ -1,6 +1,7 @@
 import Head from 'next/head'
 
 import Layout, { myName } from '../components/layout'
+import Markdown from '../components/markdown'
 import { getMarkdownContent, markdownToHtml } from '../lib/content'
 import utilStyles from '../styles/utils.module.css'
 
@@ -23,7 +24,9 @@ export default function Quotes({ quotesHtml }) {
 
       <header className={utilStyles.headingXl}>Quotes</header>
 
-      <section dangerouslySetInnerHTML={{ __html: quotesHtml }} />
+      <section>
+        <Markdown htmlContent={quotesHtml} />
+      </section>
     </Layout>
   )
 }

@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import Date from '../../components/date'
 import Layout, { myName } from '../../components/layout'
+import Markdown from '../../components/markdown'
 import { getMarkdownContent, markdownToHtml } from '../../lib/content'
 import { getSortedPostsData } from '../../lib/posts'
 import utilStyles from '../../styles/utils.module.css'
@@ -28,7 +29,11 @@ export default function Posts({ allPostsData, postsIntroHtml }) {
 
       <header className={utilStyles.headingXl}>Blog Posts</header>
 
-      <section dangerouslySetInnerHTML={{ __html: postsIntroHtml }} />
+
+
+      <section>
+        <Markdown htmlContent={postsIntroHtml} />
+      </section>
 
       <section className={utilStyles.headingMd}>
         <ul className={utilStyles.list}>

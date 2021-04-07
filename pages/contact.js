@@ -1,6 +1,7 @@
 import Head from 'next/head'
 
 import Layout, { myName } from '../components/layout'
+import Markdown from '../components/markdown'
 import { getMarkdownContent, markdownToHtml } from '../lib/content'
 import utilStyles from '../styles/utils.module.css'
 
@@ -23,7 +24,9 @@ export default function Contact({ contactHtml }) {
 
       <header className={utilStyles.headingXl}>Contact</header>
 
-      <section className={utilStyles.headingMd} dangerouslySetInnerHTML={{ __html: contactHtml }} />
+      <section className={utilStyles.headingMd}>
+        <Markdown htmlContent={contactHtml} />
+      </section>
     </Layout>
   )
 }
