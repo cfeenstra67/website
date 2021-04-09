@@ -1,6 +1,6 @@
 I've been collecting quotes and blurbs that I come across for a number of years. Generally I add something here when it makes me think a little bit, makes me laugh, or I just find it to be pleasing turn of phrase. These are roughly here in order of when I came across each one. Generally I do a bit of research on a quote to determine the author before including it here, but there could be some errors.
 
-_Disclaimer_: the inclusion of a quote here does not imply anything about my opinion of their author.
+_Disclaimer_: the inclusion of a quote here does not imply anything about my opinion of its author.
 
 > Live a good life. If there are gods and they are just, then they will not care how devout you have been, but will welcome you based on the virtues you have lived by. If there are gods, but unjust, then you should not want to worship them. If there are no gods, then you will be gone, but will have lived a noble life that will live on in the memories of your loved ones.
 > - Marcus Aurelius

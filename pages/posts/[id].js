@@ -14,9 +14,15 @@ export default function Post({ postData, config }) {
         <title>{postData.title} - {config.MY_NAME}</title>
       </Head>
 
-      <h1 className={utilStyles.centered}>{postData.title}</h1>
+      <header className={`${utilStyles.headingXl} ${utilStyles.centered}`}>
+        {postData.title}
+      </header>
+
       <Date dateString={postData.date} />
-      <Markdown htmlContent={postData.contentHtml} />
+
+      <section>
+        <Markdown htmlContent={postData.contentHtml} />
+      </section>
     </Layout>
   )
 }
