@@ -11,11 +11,17 @@ export default function Post({ postData, config }) {
   return (
     <Layout config={config}>
       <Head>
-        <title>{postData.title} - {config.MY_NAME}</title>
+        <title key="title">{postData.title} - {config.MY_NAME}</title>
+        <meta name="og:title" content={`${postData.title} - ${config.MY_NAME}`} key="metatitle" />
+        <meta
+          name="description"
+          content={postData.description}
+          key="description"
+        />
       </Head>
 
-      <header className={`${utilStyles.headingXl} ${utilStyles.centered}`}>
-        {postData.title}
+      <header>
+        <h1 className={`${utilStyles.headingXl} ${utilStyles.centered}`}>{postData.title}</h1>
       </header>
 
       <Date dateString={postData.date} />

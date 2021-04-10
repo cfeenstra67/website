@@ -26,10 +26,18 @@ export default function Home({ allPostsData, intro, config }) {
   return (
     <Layout config={config}>
       <Head>
-        <title>About Me - {config.MY_NAME}</title>
+        <title key="title">About Me - {config.MY_NAME}</title>
+        <meta name="og:title" content={`About Me - ${config.MY_NAME}`} key="metatitle" />
+        <meta
+          name="description"
+          content="A quick introduction to me."
+          key="description"
+        />
       </Head>
 
-      <header className={utilStyles.headingXl}>{intro.title}</header>
+      <header>
+        <h1 className={utilStyles.headingXl}>{intro.title}</h1>
+      </header>
 
       <section>
         <Markdown htmlContent={intro.contentHtml} />

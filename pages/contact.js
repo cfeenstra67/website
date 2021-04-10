@@ -21,10 +21,18 @@ export default function Contact({ contactHtml, config }) {
   return (
     <Layout config={config}>
       <Head>
-        <title>Quotes - {config.MY_NAME}</title>
+        <title key="title">Quotes - {config.MY_NAME}</title>
+        <meta name="og:title" content={`Quotes - ${config.MY_NAME}`} key="metatitle" />
+        <meta
+          name="description"
+          content="Contact and social media information."
+          key="description"
+        />
       </Head>
 
-      <header className={utilStyles.headingXl}>Contact</header>
+      <header>
+        <h1 className={utilStyles.headingXl}>Contact</h1>
+      </header>
 
       <section className={utilStyles.headingMd}>
         <Markdown htmlContent={contactHtml} />

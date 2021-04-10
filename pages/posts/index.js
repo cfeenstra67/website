@@ -26,10 +26,18 @@ export default function Posts({ allPostsData, postsIntroHtml, config }) {
   return (
     <Layout config={config}>
       <Head>
-        <title>Blog Posts - {config.MY_NAME}</title>
+        <title key="title">Blog Posts - {config.MY_NAME}</title>
+        <meta name="og:title" content={`Blog Posts - ${config.MY_NAME}`} key="metatitle" />
+        <meta
+          name="description"
+          content="List of blog posts I've written about topics that interest me."
+          key="description"
+        />
       </Head>
 
-      <header className={utilStyles.headingXl}>Blog Posts</header>
+      <header>
+        <h1 className={utilStyles.headingXl}>Blog Posts</h1>
+      </header>
 
       <section>
         <Markdown htmlContent={postsIntroHtml} />

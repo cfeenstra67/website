@@ -22,9 +22,15 @@ export default function Quotes({ quotesHtml, config }) {
     <Layout config={config}>
       <Head>
         <title>Quotes - {config.MY_NAME}</title>
+        <meta
+          name="description"
+          content="List of some interesting quotes I've gathered."
+        />
       </Head>
 
-      <header className={utilStyles.headingXl}>Quotes</header>
+      <header>
+        <h1 className={utilStyles.headingXl}>Quotes</h1>
+      </header>
 
       <section>
         <Markdown htmlContent={quotesHtml} />

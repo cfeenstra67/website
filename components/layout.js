@@ -14,15 +14,14 @@ export default function Layout({ children, config }) {
     <>
       <Head>
         <link rel="icon" href="/images/generated/icon.png" />
-        <meta
-          name="description"
-          content="Cam Feenstra's personal website."
-        />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0"
         />
-        <meta name="og:title" content={siteTitle} />
+        <meta name="og:title" content={siteTitle} key="metatitle" />
+        <title key="title">{siteTitle}</title>
+        <meta name="description" content="Cam Feenstra's personal website." key="description"/>
 
         {/* Global Site Tag (gtag.js) - Google Analytics */}
         <script
