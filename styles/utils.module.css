@@ -37,6 +37,10 @@
   padding-top: 1px;
 }
 
+.marginTop {
+  margin-top: 1rem;
+}
+
 .list {
   list-style: none;
   padding: 0;

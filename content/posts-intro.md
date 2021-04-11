@@ -1,1 +1,1 @@
-Not much here at the moment, but I hope to add more over time. If you're interested or curious about how infrastructure-as-code tools work, check out my first blog post below!
+Not much here at the moment, but I hope to add more over time. I've written my first couple of posts about the internals of infrastructure as code tools, check them out below!

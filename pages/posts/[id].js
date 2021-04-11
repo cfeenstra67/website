@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Button from 'react-bootstrap/button'
 
 import Date from '../../components/date'
 import Layout from '../../components/layout'
@@ -20,11 +21,20 @@ export default function Post({ postData, config }) {
         />
       </Head>
 
-      <header>
-        <h1 className={`${utilStyles.headingXl} ${utilStyles.centered}`}>{postData.title}</h1>
+      <header className={utilStyles.marginTop}>
+        <Button href="/posts" variant="outline-dark">Back to Posts</Button>
       </header>
 
-      <Date dateString={postData.date} />
+      <header>
+        <h1 className={`${utilStyles.headingXl} ${utilStyles.centered}`}>{postData.title}</h1>
+        {postData.subtitle && 
+          <h3 className={`${utilStyles.headingMd} ${utilStyles.centered}`}>{postData.subtitle}</h3>
+        }
+      </header>
+
+      <span className={utilStyles.lightText}>
+        <Date dateString={postData.date} />
+      </span>
 
       <section>
         <Markdown htmlContent={postData.contentHtml} />

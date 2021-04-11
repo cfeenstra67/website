@@ -1,7 +1,7 @@
 ---
-title: 'How Infra-as-Code Works'
+title: 'How Infrastucture as Code Works'
 date: '2021-03-01'
-description: This blog post introduces a basic model for understanding how the internals of infrastructure as code tools operate.
+description: This blog post introduces a basic model for understanding how the internals of how infrastructure as code tools build task graphs to migrate between states.
 ---
 Some of the most powerful tools in technology take the form of new _abstractions_, taking some new arbitrarily complex task and simplifying it to a set of inputs and outputs. Google, for example, simplifies the task of searching the entire internet for content down to a simple interface: give us a text query, we’ll give you some good results. Powerful programming frameworks give developers the ability to write application behavior that would otherwise be entirely unfeasible; Spark is a good example. Abstractions are powerful because they do not just provide the ability to complete some new task, but act as a building block that can be used as a component of another layer of abstraction on top of them.
 
