@@ -5,7 +5,20 @@ build-lambda:
 
 
 build-images:
+	@mkdir -p public/images/generated
 	venv/bin/python generate_images.py
+
+obsidian-export:
+	@rm -rf obsidian-tmp
+	@mkdir obsidian-tmp
+	obsidian-export \
+		/Users/cam/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/CLF/ \
+		obsidian-tmp \
+		--start-at=/Users/cam/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/CLF/Website
+	@rm -rf content public/images
+	@mv obsidian-tmp/images public/images
+	@mv obsidian-tmp content
+
 
 build-site:
 	npm run build
