@@ -65,7 +65,7 @@ def main():
             "5 ALT2.ASPMX.L.GOOGLE.COM.",
             "10 ALT3.ASPMX.L.GOOGLE.COM.",
             "10 ALT4.ASPMX.L.GOOGLE.COM.",
-            f"15 {gmail_verification_code}",
+            f"15 {gmail_verification_code}.",
         ],
     )
 
