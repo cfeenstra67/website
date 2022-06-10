@@ -1,9 +1,10 @@
 import Head from 'next/head'
-import Button from 'react-bootstrap/button'
+import Link from 'next/link';
 
-import Date from '../../components/date'
-import Layout from '../../components/layout'
-import Markdown from '../../components/markdown'
+import Button from '../../components/Button';
+import Date from '../../components/Date'
+import Layout from '../../components/Layout'
+import Markdown from '../../components/Markdown'
 import Config from '../../lib/config'
 import { getAllPostIds, getPostData } from '../../lib/posts'
 import utilStyles from '../../styles/utils.module.css'
@@ -22,7 +23,9 @@ export default function Post({ postData, config }) {
       </Head>
 
       <header className={utilStyles.marginTop}>
-        <Button href="/posts" variant="outline-dark">Back to Posts</Button>
+        <Button>
+          <Link href="/posts">Back to Posts</Link>
+        </Button>
       </header>
 
       <header>

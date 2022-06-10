@@ -1,0 +1,85 @@
+
+.navBar {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1em;
+    align-items: center;
+    background-color: var(--bg-secondary);
+    padding: 12px;
+}
+
+.title {
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title span {
+    font-size: 24px;
+    font-weight: 800;
+    color: #DDFEFF;
+    background-color: #1B004D;
+    text-decoration: none;
+}
+
+.title span:hover {
+    text-decoration: none;
+    color: #DDFEFF;
+}
+
+.navBarItems {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1em;
+    align-items: center;
+}
+
+.navBarItems a {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+.menuIcon {
+    width: 24px;
+    height: 24px;
+    background-color: var(--text-secondary);
+    mask: url('../public/icons/menu.svg') no-repeat center;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+
+    .navExpanded {
+        display: inherit !important;
+        position: inherit !important;
+    }
+
+    .title {
+        width: 100%;
+    }
+
+    .navBar {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .navBarItems {
+        flex-direction: column;
+        display: none;
+        position: absolute;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+}
+
+@media screen and (min-width: 800px) {
+
+    .menuIcon {
+        display: none;
+        position: absolute;
+    }
+
+}

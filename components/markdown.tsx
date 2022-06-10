@@ -1,4 +1,4 @@
-import styles from './markdown.module.scss'
+import styles from '../styles/Markdown.module.css'
 
 export default function Markdown({ htmlContent }) {
   return (

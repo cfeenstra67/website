@@ -1,46 +1,40 @@
-import Link from 'next/link'
-import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/Navbar'
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
 
-import styles from './navbar.module.css'
+import styles from '../styles/Navbar.module.css'
 
 export default function NavBar({ config }) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <Navbar bg="dark" variant="dark" expand="md" sticky="top">
-      <Navbar.Brand href="/">
-        <span className={styles.title}>Cam Feenstra</span>
-      </Navbar.Brand>
+    <div className={styles.navBar}>
+      <div className={styles.title}>
+        <span>Cam Feenstra</span>
+        <div className={styles.menuIcon} onClick={() => setExpanded(!expanded)} />
+      </div>
 
-      <Navbar.Toggle aria-controls="site-nav" />
+      {/*<Navbar.Toggle aria-controls="site-nav" />*/}
 
-      <Navbar.Collapse id="site-nav">
-        <Nav>
-          <Nav.Item>
-            <Nav.Link href="/">About Me</Nav.Link>
-          </Nav.Item>
+      <div
+        id="site-nav"
+        className={`${expanded ?  styles.navExpanded : ''} ${styles.navBarItems}`}
+      >
+        <Link href="/">About Me</Link>
 
-          <Nav.Item>
-            <Nav.Link href="/posts">Blog Posts</Nav.Link>
-          </Nav.Item>
+        <Link href="/posts">Blog Posts</Link>
 
-          <Nav.Item>
-            <Nav.Link href="/quotes">Quotes</Nav.Link>
-          </Nav.Item>
+        <Link href="/quotes">Quotes</Link>
 
-          <Nav.Item>
-            <Nav.Link href="/contact">Contact</Nav.Link>
-          </Nav.Item>
+        <Link href="/contact">Contact</Link>
 
-          <Nav.Item>
-            <a href={config.JOIN_MAILING_LIST_URL} target="_blank" className="nav-link">
-              <div className={`${styles.mailingListItem}`}>Join my Mailing List</div>
-            </a>
-          </Nav.Item>
+        <div>
+          <a href={config.JOIN_MAILING_LIST_URL} target="_blank" className="nav-link">
+            <div className={`${styles.mailingListItem}`}>Join my Mailing List</div>
+          </a>
+        </div>
+      </div>
 
-        </Nav>
-
-      </Navbar.Collapse>
-
-    </Navbar>
+    </div>
   )
 }

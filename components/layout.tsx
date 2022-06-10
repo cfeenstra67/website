@@ -1,11 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Row from 'react-bootstrap/Row'
-import Container from 'react-bootstrap/Container'
 
-import styles from './layout.module.css'
-import NavBar from './navbar'
-import utilStyles from '../styles/utils.module.css'
+import Navbar from './Navbar';
 
 export default function Layout({ children, config }) {
   const siteTitle = `${config.MY_NAME} - Personal Website`
@@ -42,10 +38,12 @@ export default function Layout({ children, config }) {
 
       </Head>
 
-      <NavBar config={config} />
-      <Container>
-        {children}
-      </Container>
+      <div className="layout primaryTheme">
+        <Navbar config={config} />
+        <div className="content">
+          {children}
+        </div>
+      </div>
     </>
   )
 }

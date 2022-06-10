@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
-import Layout from '../components/layout'
-import Markdown from '../components/markdown'
+import Layout from '../components/Layout'
+import Markdown from '../components/Markdown'
 import Config from '../lib/config'
 import { getMarkdownContent, markdownToHtml } from '../lib/content'
 import utilStyles from '../styles/utils.module.css'
