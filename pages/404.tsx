@@ -17,7 +17,7 @@ export default function Custom404({ config }) {
     <Layout config={config}>
       <Head>
         <title key="title">Page Not Found - {config.MY_NAME}</title>
-        <meta class="og:title" content={`Page Not Found - ${config.MY_NAME}`} key="metatitle" />
+        <meta className="og:title" content={`Page Not Found - ${config.MY_NAME}`} key="metatitle" />
         <meta
           name="description"
           content="No page was found for the given URL."

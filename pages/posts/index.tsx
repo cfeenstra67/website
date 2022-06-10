@@ -62,7 +62,7 @@ export default function Posts({ allPostsData, postsIntroHtml, config }) {
           {allPostsData.map(({ id, date, title, description }) => (
             <Card className="mb-3" key={id}>
               <Card.Body>
-                <Card.Title><Link href={`/posts/${id}`}><a class="text-dark">{title}</a></Link></Card.Title>
+                <Card.Title><Link href={`/posts/${id}`}><a className="text-dark">{title}</a></Link></Card.Title>
                 <Card.Subtitle className={utilStyles.lightText}>
                   <Date dateString={date} />
                 </Card.Subtitle>
