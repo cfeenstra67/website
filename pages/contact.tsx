@@ -1,20 +1,20 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-import Layout from '../components/Layout'
-import Markdown from '../components/Markdown'
-import Config from '../lib/config'
-import { getMarkdownContent, markdownToHtml } from '../lib/content'
-import utilStyles from '../styles/utils.module.css'
+import Layout from '../components/Layout';
+import Markdown from '../components/Markdown';
+import Config from '../lib/config';
+import { getMarkdownContent, markdownToHtml } from '../lib/content';
+import utilStyles from '../styles/utils.module.css';
 
 export async function getStaticProps() {
-  const contactMd = getMarkdownContent('contact')
-  const contactHtml = await markdownToHtml(contactMd)
+  const contactMd = getMarkdownContent('contact');
+  const contactHtml = await markdownToHtml(contactMd);
   return {
     props: {
       contactHtml,
-      config: Config()
-    }
-  }
+      config: Config(),
+    },
+  };
 }
 
 export default function Contact({ contactHtml, config }) {
@@ -22,7 +22,11 @@ export default function Contact({ contactHtml, config }) {
     <Layout config={config}>
       <Head>
         <title key="title">Quotes - {config.MY_NAME}</title>
-        <meta name="og:title" content={`Quotes - ${config.MY_NAME}`} key="metatitle" />
+        <meta
+          name="og:title"
+          content={`Quotes - ${config.MY_NAME}`}
+          key="metatitle"
+        />
         <meta
           name="description"
           content="Contact and social media information."
@@ -38,5 +42,5 @@ export default function Contact({ contactHtml, config }) {
         <Markdown htmlContent={contactHtml} />
       </section>
     </Layout>
-  )
+  );
 }

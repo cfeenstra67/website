@@ -31,9 +31,11 @@ export default function ThemePicker({
         setTheme(Theme.Dark);
         break;
     }
-  }, [theme]);
+  }, [theme, setTheme]);
 
-  return <div className={`${styles.themePicker} ${className}`} onClick={onClick} />;
+  return (
+    <div className={`${styles.themePicker} ${className}`} onClick={onClick} />
+  );
   // return <Image
   //   className={styles.themePicker}
   //   src={url}

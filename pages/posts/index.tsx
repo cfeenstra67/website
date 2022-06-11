@@ -1,32 +1,46 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
 import BlogCard from '../../components/BlogCard';
-import Layout from '../../components/Layout'
-import Markdown from '../../components/Markdown'
-import Config from '../../lib/config'
-import { getMarkdownContent, markdownToHtml } from '../../lib/content'
-import { getSortedPostsData } from '../../lib/posts'
-import utilStyles from '../../styles/utils.module.css'
+import Layout from '../../components/Layout';
+import Markdown from '../../components/Markdown';
+import { Config } from '../../lib/config';
+import { getMarkdownContent, markdownToHtml } from '../../lib/content';
+import { getSortedPostsData, Post } from '../../lib/posts';
+import utilStyles from '../../styles/utils.module.css';
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
-  const postsIntroMd = getMarkdownContent('posts-intro')
-  const postsIntroHtml = await markdownToHtml(postsIntroMd)
+export async function getStaticProps(): Promise<{ props: PostsProps }> {
+  const allPostsData = getSortedPostsData();
+  const postsIntroMd = getMarkdownContent('posts-intro');
+  const postsIntroHtml = await markdownToHtml(postsIntroMd);
   return {
     props: {
       allPostsData,
       postsIntroHtml,
-      config: Config()
-    }
-  }
+      config: Config(),
+    },
+  };
 }
 
-export default function Posts({ allPostsData, postsIntroHtml, config }) {
+export interface PostsProps {
+  allPostsData: Post[];
+  postsIntroHtml: string;
+  config: Config;
+}
+
+export default function Posts({
+  allPostsData,
+  postsIntroHtml,
+  config,
+}: PostsProps) {
   return (
     <Layout config={config}>
       <Head>
         <title key="title">Blog Posts - {config.MY_NAME}</title>
-        <meta name="og:title" content={`Blog Posts - ${config.MY_NAME}`} key="metatitle" />
+        <meta
+          name="og:title"
+          content={`Blog Posts - ${config.MY_NAME}`}
+          key="metatitle"
+        />
         <meta
           name="description"
           content="List of blog posts I've written about topics that interest me."
@@ -54,5 +68,5 @@ export default function Posts({ allPostsData, postsIntroHtml, config }) {
         ))}
       </section>
     </Layout>
-  )
+  );
 }

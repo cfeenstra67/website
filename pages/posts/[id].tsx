@@ -1,20 +1,26 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import Link from 'next/link';
 
 import Button from '../../components/Button';
-import Date from '../../components/Date'
-import Layout from '../../components/Layout'
-import Markdown from '../../components/Markdown'
-import Config from '../../lib/config'
-import { getAllPostIds, getPostData } from '../../lib/posts'
-import utilStyles from '../../styles/utils.module.css'
+import Date from '../../components/Date';
+import Layout from '../../components/Layout';
+import Markdown from '../../components/Markdown';
+import Config from '../../lib/config';
+import { getAllPostIds, getPostData } from '../../lib/posts';
+import utilStyles from '../../styles/utils.module.css';
 
 export default function Post({ postData, config }) {
   return (
     <Layout config={config}>
       <Head>
-        <title key="title">{postData.title} - {config.MY_NAME}</title>
-        <meta name="og:title" content={`${postData.title} - ${config.MY_NAME}`} key="metatitle" />
+        <title key="title">
+          {postData.title} - {config.MY_NAME}
+        </title>
+        <meta
+          name="og:title"
+          content={`${postData.title} - ${config.MY_NAME}`}
+          key="metatitle"
+        />
         <meta
           name="description"
           content={postData.description}
@@ -29,10 +35,14 @@ export default function Post({ postData, config }) {
       </header>
 
       <header>
-        <h1 className={`${utilStyles.headingXl} ${utilStyles.centered}`}>{postData.title}</h1>
-        {postData.subtitle && 
-          <h3 className={`${utilStyles.headingMd} ${utilStyles.centered}`}>{postData.subtitle}</h3>
-        }
+        <h1 className={`${utilStyles.headingXl} ${utilStyles.centered}`}>
+          {postData.title}
+        </h1>
+        {postData.subtitle && (
+          <h3 className={`${utilStyles.headingMd} ${utilStyles.centered}`}>
+            {postData.subtitle}
+          </h3>
+        )}
       </header>
 
       <span className={utilStyles.lightText}>
@@ -43,23 +53,23 @@ export default function Post({ postData, config }) {
         <Markdown htmlContent={postData.contentHtml} />
       </section>
     </Layout>
-  )
+  );
 }
 
 export async function getStaticPaths() {
-  const paths = getAllPostIds()
+  const paths = getAllPostIds().map((id) => ({ params: { id } }));
   return {
     paths,
-    fallback: false
-  }
+    fallback: false,
+  };
 }
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id)
+  const postData = await getPostData(params.id);
   return {
     props: {
       postData,
-      config: Config()
-    }
-  }
+      config: Config(),
+    },
+  };
 }

@@ -1,20 +1,20 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-import Layout from '../components/Layout'
-import Markdown from '../components/Markdown'
-import Config from '../lib/config'
-import { getMarkdownContent, markdownToHtml } from '../lib/content'
-import utilStyles from '../styles/utils.module.css'
+import Layout from '../components/Layout';
+import Markdown from '../components/Markdown';
+import Config from '../lib/config';
+import { getMarkdownContent, markdownToHtml } from '../lib/content';
+import utilStyles from '../styles/utils.module.css';
 
 export async function getStaticProps() {
-  const quotesMd = getMarkdownContent('quotes')
-  const quotesHtml = await markdownToHtml(quotesMd)
+  const quotesMd = getMarkdownContent('quotes');
+  const quotesHtml = await markdownToHtml(quotesMd);
   return {
     props: {
       quotesHtml,
-      config: Config()
-    }
-  }
+      config: Config(),
+    },
+  };
 }
 
 export default function Quotes({ quotesHtml, config }) {
@@ -36,5 +36,5 @@ export default function Quotes({ quotesHtml, config }) {
         <Markdown htmlContent={quotesHtml} />
       </section>
     </Layout>
-  )
+  );
 }

@@ -10,20 +10,24 @@ export enum Theme {
 export const themeClasses: Record<Theme, string> = {
   [Theme.Primary]: styles.primaryTheme,
   [Theme.Dark]: styles.darkTheme,
-}
+};
 
 export function useTheme() {
   const key = 'theme';
   const [cookies, setCookie, removeCookie] = useCookies([key]);
   const [themeClassName, setThemeClassName] = useState('');
 
+  const windowExists = typeof window !== 'undefined';
+
   const mediaQuery = useMemo(() => {
-    if (typeof window !== 'undefined') {
+    if (windowExists) {
       return matchMedia('(prefers-color-scheme: dark)');
     }
     return null;
-  }, [typeof window]);
-  const [isDark, setIsDark] = useState<boolean | null>(mediaQuery?.matches ?? null);
+  }, [windowExists]);
+  const [isDark, setIsDark] = useState<boolean | null>(
+    mediaQuery?.matches ?? null
+  );
 
   useEffect(() => {
     if (!mediaQuery) {
@@ -43,7 +47,7 @@ export function useTheme() {
     return () => {
       mediaQuery.removeEventListener('change', handle);
     };
-  },[mediaQuery, isDark, setIsDark]);
+  }, [mediaQuery, isDark, setIsDark]);
 
   let theme: Theme;
   if (cookies[key] !== undefined) {

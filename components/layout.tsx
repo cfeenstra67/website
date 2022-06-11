@@ -1,11 +1,16 @@
-import Head from 'next/head'
-import Link from 'next/link'
+import Head from 'next/head';
+import Link from 'next/link';
 
 import Navbar from './Navbar';
 import { useTheme } from '../lib/theme';
 
-export default function Layout({ children, config }) {
-  const siteTitle = `${config.MY_NAME} - Personal Website`
+export interface LayoutProps {
+  children?: React.ReactNode;
+  config: any;
+}
+
+export default function Layout({ children, config }: LayoutProps) {
+  const siteTitle = `${config.MY_NAME} - Personal Website`;
 
   const { theme, setTheme, themeClassName } = useTheme();
 
@@ -15,13 +20,14 @@ export default function Layout({ children, config }) {
         {/*<link rel="icon" href="/images/generated/icon.png" />*/}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="og:title" content={siteTitle} key="metatitle" />
         <title key="title">{siteTitle}</title>
-        <meta name="description" content="Cam Feenstra's personal website." key="description"/>
+        <meta
+          name="description"
+          content="Cam Feenstra's personal website."
+          key="description"
+        />
 
         {/* Global Site Tag (gtag.js) - Google Analytics */}
         <script
@@ -39,15 +45,12 @@ export default function Layout({ children, config }) {
         `,
           }}
         />
-
       </Head>
 
       <div className={`layout ${themeClassName}`}>
         <Navbar theme={theme} setTheme={setTheme} config={config} />
-        <div className="content">
-          {children}
-        </div>
+        <div className="content">{children}</div>
       </div>
     </>
-  )
+  );
 }

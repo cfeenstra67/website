@@ -11,7 +11,12 @@ export interface BlogCardProps {
   description?: string;
 }
 
-export default function BlogCard({ id, title, date, description }: BlogCardProps) {
+export default function BlogCard({
+  id,
+  title,
+  date,
+  description,
+}: BlogCardProps) {
   return (
     <Card className={styles.blogCard}>
       <Link href={`/posts/${id}`}>{title}</Link>
