@@ -1,32 +1,30 @@
 
 .navBar {
-    display: flex;
-    flex-direction: row;
-    column-gap: 1em;
-    align-items: center;
     background-color: var(--bg-secondary);
     padding: 12px;
+    display: grid;
+    grid-template-columns: repeat(6, max-content) 1fr min-content;
+    column-gap: 1em;
+    align-items: center;
 }
 
 .title {
     padding: 8px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
 .title span {
     font-size: 24px;
     font-weight: 800;
-    color: #DDFEFF;
-    background-color: #1B004D;
     text-decoration: none;
+    color: var(--text-secondary);
 }
 
 .title span:hover {
     text-decoration: none;
-    color: #DDFEFF;
 }
 
 .navBarItems {
@@ -37,7 +35,7 @@
 }
 
 .navBarItems a {
-    color: var(--text-secondary);
+    color: var(--text-secondary) !important;
     text-decoration: none;
 }
 
@@ -51,21 +49,23 @@
 
 @media screen and (max-width: 800px) {
 
+    .navBar {
+        grid-template-columns: min-content auto min-content !important;
+        grid-template-rows: auto auto !important;
+    }
+
     .navExpanded {
-        display: inherit !important;
+        display: flex !important;
         position: inherit !important;
     }
 
-    .title {
-        width: 100%;
-    }
-
-    .navBar {
-        flex-direction: column;
-        gap: 8px;
+    .themePicker {
+        grid-column: 3 !important;
     }
 
     .navBarItems {
+        grid-row: 2;
+        grid-column: 1 / 4;
         flex-direction: column;
         display: none;
         position: absolute;
@@ -82,4 +82,9 @@
         position: absolute;
     }
 
+}
+
+.themePicker {
+    margin-left: auto;
+    grid-column: 8;
 }

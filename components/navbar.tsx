@@ -2,16 +2,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import { Theme } from '../lib/theme';
 import styles from '../styles/Navbar.module.css'
+import ThemePicker from './ThemePicker';
 
-export default function NavBar({ config }) {
+export interface NavBarProps {
+  config: any;
+  theme: Theme;
+  setTheme?: (theme: Theme) => void;
+}
+
+export default function NavBar({ config, theme, setTheme }: NavBarProps) {
   const [expanded, setExpanded] = useState(false);
 
   return (
     <div className={styles.navBar}>
+      <div className={styles.menuIcon} onClick={() => setExpanded(!expanded)} />
+      
       <div className={styles.title}>
         <span>Cam Feenstra</span>
-        <div className={styles.menuIcon} onClick={() => setExpanded(!expanded)} />
       </div>
 
       {/*<Navbar.Toggle aria-controls="site-nav" />*/}
@@ -35,6 +44,7 @@ export default function NavBar({ config }) {
         </div>
       </div>
 
+      <ThemePicker className={styles.themePicker} theme={theme} setTheme={setTheme} />
     </div>
   )
 }

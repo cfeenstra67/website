@@ -1,0 +1,34 @@
+
+.primaryTheme {
+    --bg-primary: white;
+    --bg-secondary: #1B004D;
+    --text-primary: #1b004d;
+    --text-secondary: #ddfeff;
+    --padding: 8px;
+    --grey-150: rgba(0,0,0,.15);
+    --grey-400: rgba(0,0,0,.4);
+    --theme-icon: url('../public/icons/sun.svg');
+}
+
+.darkTheme {
+    --grey-150: rgba(255,255,255,.25);
+    --grey-400: rgba(255,255,255,.6);
+    --bg-primary: black;
+    --bg-secondary: rgba(255,255,255,.1);
+    --text-primary: white;
+    --text-secondary: rgba(255,255,255,.8);
+    --padding: 8px;
+    --theme-icon:  url('../public/icons/moon.svg');
+}
+
+.darkTheme a {
+    color: rgba(156,187,255,1);
+}
+
+.darkTheme a:visited {
+    color: rgba(46,112,253,1);
+}
+
+.darkTheme .content img {
+    background-color: rgba(255,255,255,.75);
+}

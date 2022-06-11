@@ -1,0 +1,16 @@
+ <svg height="32" width="32" xmlns="http://www.w3.org/2000/svg" id="favicon">
+    <style>
+        .favicon {
+            fill: #1B004D;
+            font: bold 24px sans-serif;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .favicon {
+                fill: white;
+            }
+        }
+    </style>
+
+    <text x="0" y="25" class="favicon">CF</text>
+</svg>

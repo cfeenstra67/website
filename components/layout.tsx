@@ -2,14 +2,18 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import Navbar from './Navbar';
+import { useTheme } from '../lib/theme';
 
 export default function Layout({ children, config }) {
   const siteTitle = `${config.MY_NAME} - Personal Website`
 
+  const { theme, setTheme, themeClassName } = useTheme();
+
   return (
     <>
       <Head>
-        <link rel="icon" href="/images/generated/icon.png" />
+        {/*<link rel="icon" href="/images/generated/icon.png" />*/}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta
           name="viewport"
@@ -38,8 +42,8 @@ export default function Layout({ children, config }) {
 
       </Head>
 
-      <div className="layout primaryTheme">
-        <Navbar config={config} />
+      <div className={`layout ${themeClassName}`}>
+        <Navbar theme={theme} setTheme={setTheme} config={config} />
         <div className="content">
           {children}
         </div>
