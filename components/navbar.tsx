@@ -16,21 +16,19 @@ export default function NavBar({ config, theme, setTheme }: NavBarProps) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className={styles.navBar}>
+    <div className={`${styles.navBar} ${expanded ? styles.navBarExpanded : ''}`}>
       <div className={styles.menuIcon} onClick={() => setExpanded(!expanded)} />
       
       <div className={styles.title}>
-        <span>Cam Feenstra</span>
+        <Link href="/">Cam Feenstra</Link>
       </div>
 
       {/*<Navbar.Toggle aria-controls="site-nav" />*/}
 
       <div
         id="site-nav"
-        className={`${expanded ?  styles.navExpanded : ''} ${styles.navBarItems}`}
+        className={styles.navBarItems}
       >
-        <Link href="/">About Me</Link>
-
         <Link href="/posts">Blog Posts</Link>
 
         <Link href="/quotes">Quotes</Link>

@@ -3,7 +3,7 @@
     background-color: var(--bg-secondary);
     padding: 12px;
     display: grid;
-    grid-template-columns: repeat(6, max-content) 1fr min-content;
+    grid-template-columns: max-content max-content 1fr min-content;
     column-gap: 1em;
     align-items: center;
 }
@@ -16,14 +16,14 @@
     align-items: center;
 }
 
-.title span {
+.title a {
     font-size: 24px;
     font-weight: 800;
     text-decoration: none;
-    color: var(--text-secondary);
+    color: var(--text-secondary) !important;
 }
 
-.title span:hover {
+.title a:hover {
     text-decoration: none;
 }
 
@@ -47,16 +47,20 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 634px) {
 
     .navBar {
         grid-template-columns: min-content auto min-content !important;
-        grid-template-rows: auto auto !important;
+        grid-template-rows: auto 0px;
     }
 
-    .navExpanded {
-        display: flex !important;
-        position: inherit !important;
+    .navBarExpanded {
+        grid-template-rows: auto auto;
+    }
+
+    .navBarExpanded .navBarItems {
+        display: flex;
+        visibility: visible;
     }
 
     .themePicker {
@@ -68,14 +72,13 @@
         grid-column: 1 / 4;
         flex-direction: column;
         display: none;
-        position: absolute;
         gap: 8px;
-        margin-bottom: 8px;
+        visibility: hidden;
     }
 
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 635px) {
 
     .menuIcon {
         display: none;
@@ -86,5 +89,5 @@
 
 .themePicker {
     margin-left: auto;
-    grid-column: 8;
+    grid-column: 4;
 }
