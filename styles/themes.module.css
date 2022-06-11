@@ -8,6 +8,7 @@
     --grey-150: rgba(0,0,0,.15);
     --grey-400: rgba(0,0,0,.4);
     --theme-icon: url('../public/icons/sun.svg');
+    --markdown-image-background: transparent;
 }
 
 .darkTheme {
@@ -19,6 +20,7 @@
     --text-secondary: rgba(255,255,255,.8);
     --padding: 8px;
     --theme-icon:  url('../public/icons/moon.svg');
+    --markdown-image-background: rgba(255,255,255,.75);
 }
 
 .darkTheme a {
@@ -27,8 +29,4 @@
 
 .darkTheme a:visited {
     color: rgba(46,112,253,1);
-}
-
-.darkTheme .content img {
-    background-color: rgba(255,255,255,.75);
 }

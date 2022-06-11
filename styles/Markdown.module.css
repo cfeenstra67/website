@@ -6,6 +6,7 @@
     max-height: 25rem;
     display: block;
     margin-bottom: 1rem;
+    background: var(--markdown-image-background);
 }
 
 @media screen and (max-width: 780px) {
