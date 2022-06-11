@@ -2,7 +2,6 @@ import Head from 'next/head';
 
 import Layout from '../components/Layout';
 import Config from '../lib/config';
-import utilStyles from '../styles/utils.module.css';
 
 export async function getStaticProps() {
   return {
@@ -30,11 +29,13 @@ export default function Custom404({ config }) {
       </Head>
 
       <header>
-        <h1 className={utilStyles.heading2Xl}>Page Not Found</h1>
+        <h1>Page Not Found</h1>
       </header>
 
-      <section className={utilStyles.headingMd}>
-        Try navigating to a different page.
+      <section>
+        <h3>
+          Try navigating to a different page.
+        </h3>
       </section>
     </Layout>
   );

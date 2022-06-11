@@ -1,6 +1,6 @@
 
 .navBar {
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-nav);
     padding: 12px;
     display: grid;
     grid-template-columns: max-content max-content 1fr min-content;
@@ -20,7 +20,7 @@
     font-size: 24px;
     font-weight: 800;
     text-decoration: none;
-    color: var(--text-secondary) !important;
+    color: var(--text-nav) !important;
 }
 
 .title a:hover {
@@ -35,19 +35,19 @@
 }
 
 .navBarItems a {
-    color: var(--text-secondary) !important;
+    color: var(--text-nav) !important;
     text-decoration: none;
 }
 
 .menuIcon {
     width: 24px;
     height: 24px;
-    background-color: var(--text-secondary);
+    background-color: var(--text-nav);
     mask: url('../public/icons/menu.svg') no-repeat center;
     cursor: pointer;
 }
 
-@media screen and (max-width: 634px) {
+@media screen and (max-width: 709px) {
 
     .navBar {
         grid-template-columns: min-content auto min-content !important;
@@ -78,7 +78,7 @@
 
 }
 
-@media screen and (min-width: 635px) {
+@media screen and (min-width: 710px) {
 
     .menuIcon {
         display: none;

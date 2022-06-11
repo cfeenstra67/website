@@ -4,14 +4,13 @@ import Date from '../components/Date';
 import Layout from '../components/Layout';
 import Markdown from '../components/Markdown';
 import Config from '../lib/config';
-import utilStyles from '../styles/utils.module.css';
 
 import { getSortedPostsData } from '../lib/posts';
 import { getMarkdownContent, getDataFromMarkdown } from '../lib/content';
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
-  const introMd = getMarkdownContent('intro');
+  const introMd = await getMarkdownContent('intro');
   const intro = await getDataFromMarkdown(introMd);
   return {
     props: {
@@ -40,7 +39,7 @@ export default function Home({ allPostsData, intro, config }) {
       </Head>
 
       <header>
-        <h1 className={utilStyles.headingXl}>{intro.title}</h1>
+        <h1>{intro.title}</h1>
       </header>
 
       <section>

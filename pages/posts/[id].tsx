@@ -9,7 +9,7 @@ import Config from '../../lib/config';
 import { getAllPostIds, getPostData } from '../../lib/posts';
 import utilStyles from '../../styles/utils.module.css';
 
-export default function Post({ postData, config }) {
+export default function PostComponent({ postData, config }) {
   return (
     <Layout config={config}>
       <Head>
@@ -35,17 +35,17 @@ export default function Post({ postData, config }) {
       </header>
 
       <header>
-        <h1 className={`${utilStyles.headingXl} ${utilStyles.centered}`}>
+        <h1 className={utilStyles.centered}>
           {postData.title}
         </h1>
         {postData.subtitle && (
-          <h3 className={`${utilStyles.headingMd} ${utilStyles.centered}`}>
+          <h3 className={utilStyles.centered}>
             {postData.subtitle}
           </h3>
         )}
       </header>
 
-      <span className={utilStyles.lightText}>
+      <span>
         <Date dateString={postData.date} />
       </span>
 

@@ -6,11 +6,10 @@ import Markdown from '../../components/Markdown';
 import { Config } from '../../lib/config';
 import { getMarkdownContent, markdownToHtml } from '../../lib/content';
 import { getSortedPostsData, Post } from '../../lib/posts';
-import utilStyles from '../../styles/utils.module.css';
 
 export async function getStaticProps(): Promise<{ props: PostsProps }> {
   const allPostsData = getSortedPostsData();
-  const postsIntroMd = getMarkdownContent('posts-intro');
+  const postsIntroMd = await getMarkdownContent('posts-intro');
   const postsIntroHtml = await markdownToHtml(postsIntroMd);
   return {
     props: {
@@ -49,23 +48,25 @@ export default function Posts({
       </Head>
 
       <header>
-        <h1 className={utilStyles.headingXl}>Blog Posts</h1>
+        <h1>Blog Posts</h1>
       </header>
 
       <section>
         <Markdown htmlContent={postsIntroHtml} />
       </section>
 
-      <section className={utilStyles.headingMd}>
-        {allPostsData.map(({ id, date, title, description }) => (
-          <BlogCard
-            key={id}
-            id={id}
-            title={title}
-            date={date}
-            description={description}
-          />
-        ))}
+      <section>
+        <h3>
+          {allPostsData.map(({ id, date, title, description }) => (
+            <BlogCard
+              key={id}
+              url={`/posts/${id}`}
+              title={title}
+              date={date}
+              description={description}
+            />
+          ))}
+        </h3>
       </section>
     </Layout>
   );

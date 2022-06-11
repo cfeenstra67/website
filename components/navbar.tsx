@@ -31,6 +31,8 @@ export default function NavBar({ config, theme, setTheme }: NavBarProps) {
       <div id="site-nav" className={styles.navBarItems}>
         <Link href="/posts">Blog Posts</Link>
 
+        <Link href="/projects">Projects</Link>
+
         <Link href="/quotes">Quotes</Link>
 
         <Link href="/contact">Contact</Link>

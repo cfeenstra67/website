@@ -7,31 +7,33 @@ import {
   getDataFromMarkdown,
 } from './content';
 
-export interface Post {
+export interface Project {
   id: string;
   title: string;
   date: string;
   description: string;
+  repo: string;
+  live?: string;
 }
 
-const postsDirectory = path.join(contentDirectory, 'posts');
+const projectsDirectory = path.join(contentDirectory, 'projects');
 
-export function getAllPostIds(): string[] {
-  const fileNames = fs.readdirSync(postsDirectory);
+export function getAllProjectIds(): string[] {
+  const fileNames = fs.readdirSync(projectsDirectory);
   return fileNames.map((fileName) => {
     return fileName.replace(/\.md/, '');
   });
 }
 
-export function getSortedPostsData(): Post[] {
+export function getSortedProjectsData(): Project[] {
   // Get file names under /posts
-  const fileNames = fs.readdirSync(postsDirectory);
+  const fileNames = fs.readdirSync(projectsDirectory);
   const allPostsData = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, '');
 
     // Read markdown file as string
-    const fullPath = path.join(postsDirectory, fileName);
+    const fullPath = path.join(projectsDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
     // Use gray-matter to parse the post metadata section
@@ -41,7 +43,7 @@ export function getSortedPostsData(): Post[] {
     return {
       id,
       ...matterResult.data,
-    } as Post;
+    } as Project;
   });
   // Sort posts by date
   return allPostsData.sort((a: any, b: any) => {
@@ -53,12 +55,12 @@ export function getSortedPostsData(): Post[] {
   });
 }
 
-export async function getPostData(id: string): Promise<Post & { contentHtml: string }> {
-  const fullPath = path.join(postsDirectory, `${id}.md`);
+export async function getProjectData(id: string): Promise<Project & { contentHtml: string }> {
+  const fullPath = path.join(projectsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
   return {
     id,
     ...(await getDataFromMarkdown(fileContents)),
-  } as Post & { contentHtml: string };
+  } as Project & { contentHtml: string };
 }

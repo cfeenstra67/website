@@ -1,9 +1,11 @@
 
 .primaryTheme {
     --bg-primary: white;
-    --bg-secondary: #1B004D;
+    --bg-secondary: rgba(0,0,0,.05);
+    --bg-nav: #1B004D;
     --text-primary: #1b004d;
-    --text-secondary: #ddfeff;
+    --text-secondary: rgba(0,0,0,.6);
+    --text-nav: #ddfeff;
     --padding: 8px;
     --grey-150: rgba(0,0,0,.15);
     --grey-400: rgba(0,0,0,.4);
@@ -16,8 +18,10 @@
     --grey-400: rgba(255,255,255,.6);
     --bg-primary: black;
     --bg-secondary: rgba(255,255,255,.1);
+    --bg-nav: var(--bg-secondary);
     --text-primary: white;
     --text-secondary: rgba(255,255,255,.8);
+    --text-nav: var(--text-secondary);
     --padding: 8px;
     --theme-icon:  url('../public/icons/moon.svg');
     --markdown-image-background: rgba(255,255,255,.75);

@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fsPromises from 'fs/promises';
 import path from 'path';
 
 import langPuppet from 'highlight.js/lib/languages/puppet';
@@ -17,12 +17,12 @@ const languages = {
   puppet: langPuppet,
 };
 
-export function getMarkdownContent(contentId) {
+export async function getMarkdownContent(contentId: string): Promise<string> {
   let absPath = path.join(contentDirectory, `${contentId}.md`);
-  return fs.readFileSync(absPath, 'utf8');
+  return await fsPromises.readFile(absPath, 'utf8');
 }
 
-export async function markdownToHtml(markdownContent) {
+export async function markdownToHtml(markdownContent: string): Promise<string> {
   const processedContent = await remark()
     .use(markdown as any)
     .use(externalLinks as any, { target: '_blank' })
@@ -34,7 +34,7 @@ export async function markdownToHtml(markdownContent) {
   return processedContent.toString();
 }
 
-export async function getDataFromMarkdown(fileContents) {
+export async function getDataFromMarkdown(fileContents: string): Promise<Record<string, any>> {
   const matterResult = matter(fileContents);
 
   const contentHtml = await markdownToHtml(matterResult.content);

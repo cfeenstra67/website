@@ -4,10 +4,9 @@ import Layout from '../components/Layout';
 import Markdown from '../components/Markdown';
 import Config from '../lib/config';
 import { getMarkdownContent, markdownToHtml } from '../lib/content';
-import utilStyles from '../styles/utils.module.css';
 
 export async function getStaticProps() {
-  const contactMd = getMarkdownContent('contact');
+  const contactMd = await getMarkdownContent('contact');
   const contactHtml = await markdownToHtml(contactMd);
   return {
     props: {
@@ -35,11 +34,13 @@ export default function Contact({ contactHtml, config }) {
       </Head>
 
       <header>
-        <h1 className={utilStyles.headingXl}>Contact</h1>
+        <h1>Contact</h1>
       </header>
 
-      <section className={utilStyles.headingMd}>
-        <Markdown htmlContent={contactHtml} />
+      <section>
+        <h3>
+          <Markdown htmlContent={contactHtml} />
+        </h3>
       </section>
     </Layout>
   );

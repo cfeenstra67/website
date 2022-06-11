@@ -4,10 +4,9 @@ import Layout from '../components/Layout';
 import Markdown from '../components/Markdown';
 import Config from '../lib/config';
 import { getMarkdownContent, markdownToHtml } from '../lib/content';
-import utilStyles from '../styles/utils.module.css';
 
 export async function getStaticProps() {
-  const quotesMd = getMarkdownContent('quotes');
+  const quotesMd = await getMarkdownContent('quotes');
   const quotesHtml = await markdownToHtml(quotesMd);
   return {
     props: {
@@ -29,7 +28,7 @@ export default function Quotes({ quotesHtml, config }) {
       </Head>
 
       <header>
-        <h1 className={utilStyles.headingXl}>Quotes</h1>
+        <h1>Quotes</h1>
       </header>
 
       <section>
