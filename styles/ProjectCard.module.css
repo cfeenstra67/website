@@ -6,6 +6,20 @@
     column-gap: calc(var(--padding) * 2);
 }
 
+@media screen and (max-width: 500px) {
+    .projectCard {
+        flex-direction: column;
+    }
+
+    .projectCard > div:first-child {
+        align-items: center;
+    }
+
+    .projectCard > div:first-child > div:first-child {
+        margin-left: 0 !important;
+    }
+}
+
 .projectCard h2 {
     margin-top: 0;
     margin-bottom: var(--padding);
