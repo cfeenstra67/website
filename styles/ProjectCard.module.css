@@ -37,6 +37,7 @@
     row-gap: var(--padding);
     margin-top: calc(var(--padding) * 2);
     margin-bottom: calc(var(--padding) * 2);
+    min-width: 227px;
 }
 
 .projectCard > div:first-child > div {
