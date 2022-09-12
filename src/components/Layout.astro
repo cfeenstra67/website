@@ -1,0 +1,62 @@
+---
+import Navbar from './Navbar.jsx';
+import config from '../lib/config';
+import { currentThemeClass } from '../lib/theme';
+import '../styles/App.css';
+
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props.frontmatter || Astro.props;
+
+const themeClassName = currentThemeClass.get();
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta charset="utf-8" />
+    <meta http="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="og:title" content={title} key="metatitle" />
+    <title key="title">{title}</title>
+    <meta name="description" content={description} key="description" />
+
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${config.GOOGLE_ANALYTICS_MEASUREMENT_ID}`}
+    ></script>
+    <script>
+      import config from '../lib/config.js';
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', '${config.GOOGLE_ANALYTICS_MEASUREMENT_ID}');
+    </script>
+  </head>
+  <body>
+    <script>
+      import { currentThemeClass, synchronizeThemeCookie } from '../lib/theme';
+
+      currentThemeClass.subscribe((themeClass) => {
+        document.getElementById('body').className = `layout ${themeClass}`;
+      });
+
+      synchronizeThemeCookie();
+    </script>
+    <div id="body" class={`layout ${themeClassName}`}>
+      <Navbar client:load />
+      <div class="content">
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+---
+import Layout from '../components/Layout.astro';
+import Markdown from '../components/Markdown.astro';
+import * as contact from '../../content/contact.md';
+import config from '../lib/config';
+---
+
+<Layout
+  title={`Contact - ${config.MY_NAME}`}
+  description="Contact and social media information."
+>
+  <header>
+    <h1>Contact</h1>
+  </header>
+
+  <section>
+    <h3>
+      <Markdown content={contact.compiledContent()} />
+    </h3>
+  </section>
+</Layout>

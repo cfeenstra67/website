@@ -1,0 +1,47 @@
+.primaryTheme {
+  --bg-primary: white;
+  --bg-secondary: rgba(0, 0, 0, 0.05);
+  --bg-nav: #1b004d;
+  --text-primary: #1b004d;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --text-nav: #ddfeff;
+  --padding: 8px;
+  --grey-150: rgba(0, 0, 0, 0.15);
+  --grey-400: rgba(0, 0, 0, 0.4);
+  --theme-icon: url(/icons/sun.svg);
+  --markdown-image-background: transparent;
+}
+
+@media not (prefers-color-scheme: dark) {
+  .primaryThemeAuto {
+    composes: primaryTheme;
+  }
+}
+
+.darkTheme {
+  --grey-150: rgba(255, 255, 255, 0.25);
+  --grey-400: rgba(255, 255, 255, 0.6);
+  --bg-primary: black;
+  --bg-secondary: rgba(255, 255, 255, 0.1);
+  --bg-nav: var(--bg-secondary);
+  --text-primary: white;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-nav: var(--text-secondary);
+  --padding: 8px;
+  --theme-icon: url(/icons/moon.svg);
+  --markdown-image-background: rgba(255, 255, 255, 0.75);
+}
+
+@media (prefers-color-scheme: dark) {
+  .darkThemeAuto {
+    composes: darkTheme;
+  }
+}
+
+.darkTheme a {
+  color: rgba(156, 187, 255, 1);
+}
+
+.darkTheme a:visited {
+  color: rgba(46, 112, 253, 1);
+}

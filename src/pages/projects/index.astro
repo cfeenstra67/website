@@ -1,0 +1,39 @@
+---
+import Layout from '../../components/Layout.astro';
+import Markdown from '../../components/Markdown.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import * as projectsIntro from '../../../content/projects-intro.md';
+import config from '../../lib/config';
+import { getPostId } from '../../lib/content-utils';
+
+const projects = await Astro.glob('../../../content/projects/*.md');
+const sortedProjects = projects.sort((a, b) => {
+  return a.date > b.date ? 1 : -1;
+});
+---
+
+<Layout
+  title={`Projects - {config.MY_NAME}`}
+  description="Descriptions of some of the projects I've worked on."
+>
+  <header>
+    <h1>Projects</h1>
+  </header>
+
+  <section>
+    <Markdown content={projectsIntro.compiledContent()} />
+  </section>
+
+  <section>
+    {
+      sortedProjects.map((project) => (
+        <ProjectCard
+          project={{
+            ...project.frontmatter,
+            id: getPostId(project.file),
+          }}
+        />
+      ))
+    }
+  </section>
+</Layout>

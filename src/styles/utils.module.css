@@ -1,0 +1,15 @@
+.textPrimary {
+  color: var(--text-primary);
+}
+
+.textSecondary {
+  color: var(--text-secondary);
+}
+
+.marginTop {
+  margin-top: 1rem;
+}
+
+.centered {
+  text-align: center;
+}

@@ -1,0 +1,67 @@
+---
+import Card from './Card.astro';
+import Date from './Date.astro';
+import styles from '../styles/ProjectCard.module.css';
+
+interface Project {
+  id: string;
+  title: string;
+  date: string;
+  description: string;
+  repo: string;
+  live?: string;
+}
+
+export interface Props {
+  project: Project;
+}
+
+function formatUrl(url) {
+  const urlObj = new URL(url);
+  const path = urlObj.pathname === '/' ? '' : urlObj.pathname;
+  let host = urlObj.hostname;
+  if (host.startsWith('www.')) {
+    host = host.slice('www.'.length);
+  }
+  return `${host}${path}`;
+}
+
+const { project } = Astro.props;
+---
+
+<Card className={styles.projectCard}>
+  <div>
+    <div>
+      <a href={`/projects/${project.id}`}><h2>{project.title}</h2></a>
+    </div>
+    <div>
+      <div class={styles.githubIcon}></div>
+      <a
+        href={`https://github.com/${project.repo}`}
+        target="_blank"
+        rel="noreferrer"
+        >{project.repo}
+      </a>
+    </div>
+    {
+      project.live && (
+        <div>
+          <div class={styles.internetIcon} />
+          <a href={project.live} target="_blank" rel="noreferrer">
+            {formatUrl(project.live)}
+          </a>
+        </div>
+      )
+    }
+  </div>
+
+  <div class={styles.descriptionCard}>
+    <p>
+      {project.description}
+    </p>
+    <p class={styles.descriptionUpdated}>
+      <i>Updated:</i>
+      <Date dateString={project.date} />
+    </p>
+  </div>
+</Card>

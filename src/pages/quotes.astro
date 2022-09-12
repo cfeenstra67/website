@@ -1,0 +1,19 @@
+---
+import Layout from '../components/Layout.astro';
+import Markdown from '../components/Markdown.astro';
+import * as quotes from '../../content/quotes.md';
+import config from '../lib/config';
+---
+
+<Layout
+  title={`Quotes - ${config.MY_NAME}`}
+  description="List of some interesting quotes I've gathered."
+>
+  <header>
+    <h1>Quotes</h1>
+  </header>
+
+  <section>
+    <Markdown content={quotes.compiledContent()} />
+  </section>
+</Layout>

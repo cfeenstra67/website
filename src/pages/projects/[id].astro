@@ -1,0 +1,39 @@
+---
+import Button from '../../components/Button.astro';
+import Layout from '../../components/Layout.astro';
+import Markdown from '../../components/Markdown.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import config from '../../lib/config';
+import { getPostId } from '../../lib/content-utils';
+import utilStyles from '../../styles/utils.module.css';
+
+export async function getStaticPaths() {
+  const projects = await Astro.glob('../../../content/projects/*.md');
+  return projects.map((project) => ({
+    params: { id: getPostId(project.file) },
+  }));
+}
+
+const { id } = Astro.params;
+
+const project = await import(`../../../content/projects/${id}.md`);
+---
+
+<Layout
+  title={`${project.frontmatter.title} - ${config.MY_NAME}`}
+  description={project.frontmatter.description}
+>
+  <header className={utilStyles.marginTop}>
+    <Button>
+      <a href="/projects">Back to Projects</a>
+    </Button>
+  </header>
+
+  <section className={utilStyles.marginTop}>
+    <ProjectCard project={project.frontmatter} />
+  </section>
+
+  <section>
+    <Markdown content={project.compiledContent()} />
+  </section>
+</Layout>

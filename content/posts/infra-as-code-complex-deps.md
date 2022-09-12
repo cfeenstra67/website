@@ -7,7 +7,7 @@ description: This blog post describes how a number of how Terraform, Pulumi, Clo
 
 Infrastructure as code tools allow developers to automate their infrastructure in some incredible ways, but they also have their limitations. It may be surprising, but even some changes that may seem routine can actually cause these tools to attempt impossible operations. For instance, imagine you’re trying to create the resources defined by the following Terraform configuration:
 
-```puppet
+```hcl
 resource "aws_security_group" "test" {
   name = "test_group"
 
@@ -37,7 +37,7 @@ resource "aws_instance" "test" {
 
 This configuration simply creates a security group allowing SSH access from any IP address and all outbound access, then attaches it to a new AWS EC2 instance. You run **terraform apply** and everything gets created without an issue. You think back to all the time you’ve spent creating resources in the AWS dashboard and feel a rush of excitement for the future. Next you decide you want to add a description to the security group; how great it is that it’s just changing a line of code! You end up with this configuration for the security group:
 
-```puppet
+```hcl
 resource "aws_security_group" "test" {
   name = "test_group"
   description = "This is used to restrict access to my instance. Managed by Terraform."
@@ -97,7 +97,7 @@ Knowing the issue, there’s a couple different approaches we can take to resolv
 
 The yellow arrow indicates an optional dependency that is being respected. If we apply this configuration, all operations will complete successfully. The new terraform configuration making this change would look like this:
 
-```puppet
+```hcl
 resource "aws_security_group" "test_2" {
   name_prefix = "test_group"
   description = "This is used to restrict access to my instance. Managed by Terraform."
@@ -134,7 +134,7 @@ There is also another approach that, while not suitable for most situations, can
 
 This one is interesting to inspect: we can see that the current instance gets deleted first, then the security group deletion and creation happen in succession after that. At that point, the new instance gets created. One of many examples of configuration changes that could force this:
 
-```puppet
+```hcl
 resource "aws_instance" "test" {
   ami = "ami-07d02ee1eeb0c996c"
   instance_type = "t2.micro"
@@ -238,7 +238,7 @@ Recreating infrastructure before deleting old versions is generally presented by
 
 Going back to the original Terraform example--if we didn’t want to mess with identifiers or any tricks to correct the plan, there’s another approach we could take that doesn’t even require having to randomize resource names: we could do the migration in two steps. In our configuration, we’d first simply remove the security group association from the instance, like so:
 
-```puppet
+```hcl
 resource "aws_instance" "test" {
   ami = "ami-07d02ee1eeb0c996c"
   instance_type = "t2.micro"

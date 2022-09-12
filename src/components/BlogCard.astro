@@ -1,0 +1,20 @@
+---
+import Card from './Card.astro';
+import Date from './Date.astro';
+import styles from '../styles/BlogCard.module.css';
+
+export interface Props {
+  url: string;
+  title: string;
+  date: string;
+  description?: string;
+}
+
+const { url, title, date, description } = Astro.props;
+---
+
+<Card className={styles.blogCard}>
+  <a href={url}>{title}</a>
+  <Date dateString={date} />
+  {description && <span>{description}</span>}
+</Card>

@@ -1,0 +1,6 @@
+export default {
+  JOIN_MAILING_LIST_URL: import.meta.env.PUBLIC_JOIN_MAILING_LIST_URL,
+  MY_NAME: 'Cam Feenstra',
+  GOOGLE_ANALYTICS_MEASUREMENT_ID: import.meta.env
+    .PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID,
+};

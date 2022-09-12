@@ -1,0 +1,11 @@
+---
+import styles from '../styles/Markdown.module.css';
+
+export interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+---
+
+<div class={styles.markdownContent} set:html={content}></div>

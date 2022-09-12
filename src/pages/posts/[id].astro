@@ -1,0 +1,50 @@
+---
+import Button from '../../components/Button.astro';
+import Date from '../../components/Date.astro';
+import Layout from '../../components/Layout.astro';
+import Markdown from '../../components/Markdown.astro';
+import config from '../../lib/config';
+import { getPostId } from '../../lib/content-utils';
+import utilStyles from '../../styles/utils.module.css';
+
+export async function getStaticPaths() {
+  const posts = await Astro.glob('../../../content/posts/*.md');
+  return posts.map((post) => ({
+    params: { id: getPostId(post.file) },
+  }));
+}
+
+const { id } = Astro.params;
+
+const post = await import(`../../../content/posts/${id}.md`);
+---
+
+<Layout
+  title={`${post.frontmatter.title} - ${config.MY_NAME}`}
+  description={post.frontmatter.description}
+>
+  <header className={utilStyles.marginTop}>
+    <Button>
+      <a href="/posts">Back to Posts</a>
+    </Button>
+  </header>
+
+  <header>
+    <h1 className={utilStyles.centered}>
+      {post.frontmatter.title}
+    </h1>
+    {
+      post.frontmatter.subtitle && (
+        <h3 className={utilStyles.centered}>{post.frontmatter.subtitle}</h3>
+      )
+    }
+  </header>
+
+  <span>
+    <Date dateString={post.frontmatter.date} />
+  </span>
+
+  <section>
+    <Markdown content={post.compiledContent()} />
+  </section>
+</Layout>

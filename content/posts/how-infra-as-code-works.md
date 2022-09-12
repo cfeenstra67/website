@@ -12,7 +12,7 @@ I was fascinated by infra-as-code tools since my first exposure to them in 2017,
 ## Resources
 
 Every infrastructure-as-code tool or framework on the market today is centered around the concept of **resources**. A resource translates to something in the real world, like an AWS server--it exists, you’re being charged for it, and someone might be in trouble if you can’t maintain access to it. Implementationally it generally maps to some sort of stateful API, or something you can create, update, and delete--that’s a general description, but conceptually it really is that general. How resources work is that you provide the tool with some configuration--for an AWS EC2 Instance (server) this might be the size, the machine image to use, and some network configuration for example. That configuration is **declarative**--meaning the user does not tell Terraform or Pulumi what specific operations to execute, only the desired end state. This is an example of a terraform EC2 Instance configuration:
-```puppet
+```hcl
 resource "aws_instance" "my_server" {
  instance_type = "t2.micro"
  ami = "ami-0f400b8037c2bef6c"

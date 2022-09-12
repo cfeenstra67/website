@@ -1,0 +1,19 @@
+---
+import * as intro from '../../content/intro.md';
+import Layout from '../components/Layout.astro';
+import Markdown from '../components/Markdown.astro';
+import config from '../lib/config.js';
+---
+
+<Layout
+  title={`About Me - ${config.MY_NAME}`}
+  description="A quick introduction to me."
+>
+  <header>
+    <h1>{intro.frontmatter.title}</h1>
+  </header>
+
+  <section>
+    <Markdown content={intro.compiledContent()} />
+  </section>
+</Layout>

@@ -1,8 +1,0 @@
-
-.themePicker {
-    width: 20px;
-    height: 20px;
-    background-color: var(--text-nav);
-    mask: var(--theme-icon) no-repeat center;
-    cursor: pointer;
-}

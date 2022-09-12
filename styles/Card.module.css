@@ -1,7 +1,0 @@
-
-.card {
-    border: 1px solid var(--grey-150);
-    border-radius: var(--padding);
-    padding: calc(var(--padding) * 2);
-    margin-bottom: 1em;
-}
