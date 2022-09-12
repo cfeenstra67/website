@@ -4,8 +4,8 @@ def handle(event, context):
     url = request["uri"]
 
     if url.endswith("/"):
-        request["url"] += "index.html"
+        request["uri"] += "index.html"
     elif "." not in url:
-        request["url"] += "/index.html"
+        request["uri"] += "/index.html"
 
     return request

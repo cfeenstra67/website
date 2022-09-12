@@ -69,7 +69,7 @@ def main():
         ],
     )
 
-    site_dir = "out"
+    site_dir = "dist"
 
     root_bucket = aws.s3.Bucket(
         dns_name + "-site-bucket",
