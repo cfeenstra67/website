@@ -1,6 +1,5 @@
 name: blog
+main: infra/index.ts
 runtime:
-  name: python
-  options:
-    virtualenv: venv
+  name: nodejs
 description: My Personal Website

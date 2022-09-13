@@ -1,0 +1,14 @@
+{
+    "name": "website-infra",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/mime-types": "^2.1.1",
+        "@types/node": "^14",
+        "mime-types": "^2.1.35"
+    },
+    "dependencies": {
+        "@pulumi/aws": "^5.0.0",
+        "@pulumi/awsx": "^0.40.0",
+        "@pulumi/pulumi": "^3.0.0"
+    }
+}
