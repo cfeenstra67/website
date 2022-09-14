@@ -129,8 +129,8 @@ export = async () => {
 
   const cdnEdgeFunction = new aws.lambda.CallbackFunction('edge_lambda_func', {
     role: cdnLambdaExecutionRole,
-    callback: (event: any) => {
-      const request = event.request;
+    callback: async (event: any) => {
+      const request = event.Records[0].cf.request;
       const uri = request.uri;
 
       // Check whether the URI is missing a file name.
