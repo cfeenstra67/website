@@ -129,6 +129,8 @@ export = async () => {
 
   const cdnEdgeFunction = new aws.lambda.CallbackFunction('edge_lambda_func', {
     role: cdnLambdaExecutionRole,
+    // The `async` is important here, it significantly changes the generated
+    // code and this doesn't work without it.
     callback: async (event: any) => {
       const request = event.Records[0].cf.request;
       const uri = request.uri;
