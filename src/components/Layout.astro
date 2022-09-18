@@ -39,7 +39,7 @@ const themeClassName = currentThemeClass.get();
       }
       gtag('js', new Date());
 
-      gtag('config', '${config.GOOGLE_ANALYTICS_MEASUREMENT_ID}');
+      gtag('config', config.GOOGLE_ANALYTICS_MEASUREMENT_ID);
     </script>
   </head>
   <body>
@@ -54,6 +54,7 @@ const themeClassName = currentThemeClass.get();
     </script>
     <div id="body" class={`layout ${themeClassName}`}>
       <Navbar client:load />
+
       <div class="content">
         <slot />
       </div>

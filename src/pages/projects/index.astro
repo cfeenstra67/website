@@ -8,7 +8,7 @@ import { getPostId } from '../../lib/content-utils';
 
 const projects = await Astro.glob('../../../content/projects/*.md');
 const sortedProjects = projects.sort((a, b) => {
-  return a.date > b.date ? 1 : -1;
+  return a.frontmatter.date > b.frontmatter.date ? -1 : 1;
 });
 ---
 

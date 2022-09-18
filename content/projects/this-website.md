@@ -13,7 +13,6 @@ I've written some [blog posts](/posts) that I'm hosting here as well, go check t
 
 - I recently migrated this website from [Next.js](https://nextjs.org) to [Astro](https://astro.build). The migration was actually really easy, it took me just a couple of hours to do. I _love_ Astro so far, it feels like exactly what I want out of a front end framework. From my experience thus far, the development experience and capabilities are on par with popular Javascript frameworks like Next.js, yet it doesn't lock you into the approach of loading a huge bundle of Javascript on the client to generate the entire page. I think React is great, but getting to pick and choose where to use it without making your entire site depend on it is really nice for a simple site like this.
 
-- Next.js is the framework I'm using the write the actual app. Just using basic CSS (w/ CSS modules) for the styling.
 - It's being deployed on `www.camfeenstra.com` using AWS cloudfront and ACM for certificate verification.
     - It's an entirely static site so the hosting cost is basically free, and ACM ensure that there's no need to worry about certificates either
     - This deployment method is great--there's nothing for me to worry about, including costs.
