@@ -151,6 +151,25 @@ export = async () => {
     timeout: 10,
   }, { provider: eastProvider });
 
+  const cachePolicy = new aws.cloudfront.CachePolicy('cache-policy', {
+    defaultTtl: 600,
+    maxTtl: 600,
+    minTtl: 0,
+    parametersInCacheKeyAndForwardedToOrigin: {
+      cookiesConfig: {
+        cookieBehavior: 'none'
+      },
+      headersConfig: {
+        headerBehavior: 'none'
+      },
+      queryStringsConfig: {
+        queryStringBehavior: 'none'
+      },
+      enableAcceptEncodingGzip: true,
+      enableAcceptEncodingBrotli: true,
+    }
+  });
+
   const cloudfrontDistribution = new aws.cloudfront.Distribution('distribution', {
     enabled: true,
     isIpv6Enabled: false,
@@ -174,7 +193,6 @@ export = async () => {
       viewerProtocolPolicy: 'redirect-to-https',
       allowedMethods: ['GET', 'HEAD', 'OPTIONS'],
       cachedMethods: ['GET', 'HEAD', 'OPTIONS'],
-      forwardedValues: { cookies: { forward: 'none' }, queryString: false },
       lambdaFunctionAssociations: [
         {
           eventType: 'origin-request',
@@ -182,9 +200,8 @@ export = async () => {
           includeBody: false,
         }
       ],
-      minTtl: 0,
-      defaultTtl: 600,
-      maxTtl: 600,
+      compress: true,
+      cachePolicyId: cachePolicy.id,
     },
     priceClass: 'PriceClass_100',
     customErrorResponses: [
