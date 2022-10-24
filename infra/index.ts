@@ -14,6 +14,11 @@ export = async () => {
 
   const fullDnsName = `www.${dnsName}`;
 
+  const tags = {
+    source: 'pulumi',
+    project: 'website',
+  };
+
   const gmailVerificationCode = config.require('gmail-verification-code');
 
   const eastProvider = new aws.Provider('east', {
@@ -23,26 +28,32 @@ export = async () => {
 
   const zone = new aws.route53.Zone('zone', {
     name: dnsName,
-    tags: { source: 'pulumi', project: 'website' }
+    tags,
   });
 
   const certificate = new aws.acm.Certificate('certificate', {
-    domainName: fullDnsName,
+    domainName: dnsName,
     validationMethod: 'DNS',
+    subjectAlternativeNames: [fullDnsName],
+    tags,
   }, { provider: eastProvider });
 
-  const certificateValidationDomain = new aws.route53.Record(`${fullDnsName}-validation`, {
-    name: certificate.domainValidationOptions[0].resourceRecordName,
-    type: certificate.domainValidationOptions[0].resourceRecordType,
-    zoneId: zone.zoneId,
-    records: [certificate.domainValidationOptions[0].resourceRecordValue],
-    ttl: 600
-  });
+  const fqdns: pulumi.Output<string>[] = [];
+  for (let i = 0; i < 2; i++) {
+    const certificateValidationDomain = new aws.route53.Record(`${fullDnsName}-validation-${i}`, {
+      name: certificate.domainValidationOptions[i].resourceRecordName,
+      type: certificate.domainValidationOptions[i].resourceRecordType,
+      zoneId: zone.zoneId,
+      records: [certificate.domainValidationOptions[i].resourceRecordValue],
+      ttl: 600
+    });
+    fqdns.push(certificateValidationDomain.fqdn);
+  }
 
   const certificateValidation = new aws.acm.CertificateValidation(
     `certificate_validation`, {
       certificateArn: certificate.arn,
-      validationRecordFqdns: [certificateValidationDomain.fqdn],
+      validationRecordFqdns: fqdns,
     }, { provider: eastProvider }
   );
 
@@ -65,20 +76,26 @@ export = async () => {
 
   const siteDir = path.join(__dirname, "../dist");
 
-  const rootBucket = new aws.s3.Bucket(`${dnsName}-site-bucket`, {
-    bucket: dnsName,
-    acl: 'private',
-    website: { redirectAllRequestsTo: `https://${fullDnsName}` }
+  const siteBucket = new aws.s3.Bucket(`${dnsName}-site`, {
+    tags,
   });
-
-  const siteBucket = new aws.s3.Bucket(`${fullDnsName}-site-bucket`, {
-    bucket: fullDnsName,
-    acl: 'public-read',
-    website: { indexDocument: 'index.html' }
+  const siteBucketAccessBlock = new aws.s3.BucketPublicAccessBlock(`${dnsName}-access-block`, {
+    bucket: siteBucket.bucket,
+    blockPublicAcls: true,
+    blockPublicPolicy: true,
+    ignorePublicAcls: true,
+    restrictPublicBuckets: true,
   });
 
   const logsBucket = new aws.s3.Bucket(`${dnsName}-logs`, {
-    acl: 'private'
+    tags,
+  });
+  const logsBucketAccessBlock = new aws.s3.BucketPublicAccessBlock(`${dnsName}-logs-access-block`, {
+    bucket: logsBucket.bucket,
+    blockPublicAcls: true,
+    blockPublicPolicy: true,
+    ignorePublicAcls: true,
+    restrictPublicBuckets: true,
   });
 
   for await (const filePath of walkDirectory(siteDir)) {
@@ -86,7 +103,6 @@ export = async () => {
     new aws.s3.BucketObject(key, {
       bucket: siteBucket,
       source: new pulumi.asset.FileAsset(filePath),
-      acl: 'public-read',
       contentType: mime.lookup(filePath) || 'binary/octet-stream',
     });
   }
@@ -127,14 +143,31 @@ export = async () => {
     }),
   });
 
-  const cdnEdgeFunction = new aws.lambda.CallbackFunction('edge_lambda_func', {
+  const cdnRequestEdgeFunction = new aws.lambda.CallbackFunction(`edge-request`, {
     role: cdnLambdaExecutionRole,
     // The `async` is important here, it significantly changes the generated
     // code and this doesn't work without it.
     callback: async (event: any) => {
       const request = event.Records[0].cf.request;
-      const uri = request.uri;
 
+      const host = request.headers.host[0].value;
+      if (host === dnsName) {
+        const path = request.uri === '/index.html' ? '' : request.uri;
+        return {
+          status: 302,
+          statusDescription: 'Found',
+          headers: {
+            location: [
+              { key: 'Location', value: `https://${fullDnsName}${path}` }
+            ]
+          }
+        };
+      }
+      request.headers.host = [
+        { key: 'Host', value: request.origin.s3.domainName }
+      ];
+
+      const uri = request.uri;
       // Check whether the URI is missing a file name.
       if (uri.endsWith('/')) {
         request.uri += 'index.html';
@@ -160,7 +193,8 @@ export = async () => {
         cookieBehavior: 'none'
       },
       headersConfig: {
-        headerBehavior: 'none'
+        headerBehavior: 'whitelist',
+        headers: { items: ['Host'] }
       },
       queryStringsConfig: {
         queryStringBehavior: 'none'
@@ -170,20 +204,68 @@ export = async () => {
     }
   });
 
+  const cacheStaticResourcesPolicy = new aws.cloudfront.ResponseHeadersPolicy('static-response-headers', {
+    customHeadersConfig: {
+      items: [
+        { header: 'Cache-Control', override: false, value: `max-age=${30 * 24 * 3600}` }
+      ]
+    }
+  });
+
+  const accessControl = new aws.cloudfront.OriginAccessControl('access-control', {
+    description: 'camfeenstra.com access control',
+    originAccessControlOriginType: 's3',
+    signingBehavior: 'always',
+    signingProtocol: 'sigv4'
+  });
+
+  const bucketPolicy = new aws.s3.BucketPolicy(`${dnsName}-policy`, {
+    bucket: siteBucket.bucket,
+    policy: siteBucket.arn.apply((arn) =>
+      JSON.stringify({
+        Version: '2012-10-17',
+        Statement: {
+          Sid: 'AllowCloudfrontServicePrincipalReadOnly',
+          Effect: 'Allow',
+          Principal: {
+            Service: 'cloudfront.amazonaws.com'
+          },
+          Action: 's3:GetObject',
+          Resource: `${arn}/*`
+        }
+      })
+    ),
+  });
+
+  function staticCacheBehaviorForPattern(pattern: string) {
+    return {
+      pathPattern: pattern,
+      targetOriginId: siteBucket.arn,
+      viewerProtocolPolicy: 'redirect-to-https',
+      allowedMethods: ['GET', 'HEAD', 'OPTIONS'],
+      cachedMethods: ['GET', 'HEAD', 'OPTIONS'],
+      compress: true,
+      cachePolicyId: cachePolicy.id,
+      lambdaFunctionAssociations: [
+        {
+          eventType: 'origin-request',
+          lambdaArn: cdnRequestEdgeFunction.qualifiedArn,
+          includeBody: false,
+        }
+      ],
+      responseHeadersPolicyId: cacheStaticResourcesPolicy.id,
+    };
+  }
+
   const cloudfrontDistribution = new aws.cloudfront.Distribution('distribution', {
     enabled: true,
     isIpv6Enabled: false,
-    aliases: [fullDnsName],
+    aliases: [fullDnsName, dnsName],
     origins: [
       {
         originId: siteBucket.arn,
-        domainName: siteBucket.websiteEndpoint,
-        customOriginConfig: {
-          originProtocolPolicy: 'http-only',
-          httpPort: 80,
-          httpsPort: 443,
-          originSslProtocols: ["TLSv1.2"],
-        }
+        domainName: siteBucket.bucketRegionalDomainName,
+        originAccessControlId: accessControl.id
       }
     ],
     comment: '',
@@ -196,13 +278,20 @@ export = async () => {
       lambdaFunctionAssociations: [
         {
           eventType: 'origin-request',
-          lambdaArn: cdnEdgeFunction.qualifiedArn,
+          lambdaArn: cdnRequestEdgeFunction.qualifiedArn,
           includeBody: false,
-        }
+        },
       ],
       compress: true,
       cachePolicyId: cachePolicy.id,
     },
+    orderedCacheBehaviors: [
+      '*.jpg',
+      '*.png',
+      '*.js',
+      '*.css',
+      '*.svg'
+    ].map(staticCacheBehaviorForPattern),
     priceClass: 'PriceClass_100',
     customErrorResponses: [
       { errorCode: 404, responseCode: 404, responsePagePath: '/404.html' }
@@ -219,34 +308,22 @@ export = async () => {
     },
   });
 
-  const websiteRecord = new aws.route53.Record(fullDnsName, {
-    name: 'www',
-    zoneId: zone.zoneId,
-    type: 'A',
-    aliases: [
-      {
-        name: cloudfrontDistribution.domainName,
-        zoneId: cloudfrontDistribution.hostedZoneId,
-        evaluateTargetHealth: true,
-      }
-    ]
-  });
-
-  const rootWebsiteRecord = new aws.route53.Record(dnsName, {
-    name: dnsName,
-    zoneId: zone.zoneId,
-    type: 'A',
-    aliases: [
-      {
-        name: `s3-website.${awsRegion.name}.amazonaws.com`,
-        zoneId: rootBucket.hostedZoneId,
-        evaluateTargetHealth: true,
-      }
-    ]
-  });
+  for (const domain of [dnsName, fullDnsName]) {
+    new aws.route53.Record(domain, {
+      name: domain,
+      zoneId: zone.zoneId,
+      type: 'A',
+      aliases: [
+        {
+          name: cloudfrontDistribution.domainName,
+          zoneId: cloudfrontDistribution.hostedZoneId,
+          evaluateTargetHealth: true,
+        }
+      ]
+    });
+  }
 
   return {
-    websiteEndpoint: siteBucket.websiteEndpoint,
     cloudfrontDomain: cloudfrontDistribution.domainName,
     endpoint: `https://${fullDnsName}`
   };

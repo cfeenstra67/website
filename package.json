@@ -11,19 +11,20 @@
     "format": "prettier --write src"
   },
   "dependencies": {
-    "@astrojs/react": "^1.1.2",
+    "@astrojs/preact": "^1.2.0",
     "@astrojs/rss": "^1.0.1",
     "@astrojs/sitemap": "^1.0.0",
-    "@nanostores/react": "^0.4.0",
-    "@types/react": "^18.0.19",
+    "@nanostores/preact": "^0.3.1",
     "astro": "^1.1.7",
     "date-fns": "^2.29.2",
     "nanostores": "^0.7.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "preact": "^10.11.2",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
+    "@types/react": "^18.0.21",
     "eslint": "8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.6.2"
