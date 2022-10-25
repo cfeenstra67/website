@@ -230,8 +230,8 @@ export = async () => {
           Principal: {
             Service: 'cloudfront.amazonaws.com'
           },
-          Action: 's3:GetObject',
-          Resource: `${arn}/*`
+          Action: ['s3:GetObject', 's3:ListBucket'],
+          Resource: [arn, `${arn}/*`]
         }
       })
     ),
