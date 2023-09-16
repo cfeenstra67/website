@@ -1,6 +1,4 @@
 ---
-import styles from '../styles/Card.module.css';
-
 export interface Props {
   className?: string;
 }
@@ -8,6 +6,6 @@ export interface Props {
 const { className } = Astro.props;
 ---
 
-<div class={`${styles.card} ${className || ''}`}>
+<div class={`border border-solid border-grey-150 rounded p-4 mb-4 ${className || ''}`}>
   <slot />
 </div>

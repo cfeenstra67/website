@@ -1,7 +1,6 @@
 ---
 import Card from './Card.astro';
 import Date from './Date.astro';
-import styles from '../styles/BlogCard.module.css';
 
 export interface Props {
   url: string;
@@ -13,8 +12,8 @@ export interface Props {
 const { url, title, date, description } = Astro.props;
 ---
 
-<Card className={styles.blogCard}>
-  <a href={url}>{title}</a>
+<Card className="flex flex-col [&_span]:text-[.8em] [&_span]:text-textPrimary [&_time]:text-[.9em] [&_time]:text-grey-400">
+  <a href={url} class="font-semibold text-xl">{title}</a>
   <Date dateString={date} />
   {description && <span>{description}</span>}
 </Card>

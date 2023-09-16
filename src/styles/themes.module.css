@@ -5,7 +5,7 @@
   --text-primary: #1b004d;
   --text-secondary: rgba(0, 0, 0, 0.6);
   --text-nav: #ddfeff;
-  --padding: 8px;
+  --padding: .25rem;
   --grey-150: rgba(0, 0, 0, 0.15);
   --grey-400: rgba(0, 0, 0, 0.4);
   --theme-icon: url(/icons/sun.svg);

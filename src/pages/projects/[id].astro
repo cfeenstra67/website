@@ -5,7 +5,6 @@ import Markdown from '../../components/Markdown.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import config from '../../lib/config';
 import { getPostId } from '../../lib/content-utils';
-import utilStyles from '../../styles/utils.module.css';
 
 export async function getStaticPaths() {
   const projects = await Astro.glob('../../../content/projects/*.md');
@@ -23,13 +22,13 @@ const project = await import(`../../../content/projects/${id}.md`);
   title={`${project.frontmatter.title} - ${config.MY_NAME}`}
   description={project.frontmatter.description}
 >
-  <header className={utilStyles.marginTop}>
+  <header class="mt-4">
     <Button>
       <a href="/projects">Back to Projects</a>
     </Button>
   </header>
 
-  <section className={utilStyles.marginTop}>
+  <section class="mt-4">
     <ProjectCard project={project.frontmatter} />
   </section>
 

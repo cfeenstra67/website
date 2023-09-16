@@ -2,7 +2,14 @@ import rss from '@astrojs/rss';
 import { getPostId } from '../../lib/content-utils';
 
 const postsImport = import.meta.glob('../../../content/posts/*.md', { eager: true });
-const posts = Object.values(postsImport);
+const posts = Object.values<{
+  file: string;
+  frontmatter: {
+    date: string;
+    title: string;
+    description: string;
+  }
+}>(postsImport as any);
 const sortedPosts = posts.sort((a, b) => {
   return a.frontmatter.date > b.frontmatter.date ? -1 : 1;
 });
@@ -14,7 +21,7 @@ export const get = () => rss({
   items: sortedPosts.map((post) => ({
     title: post.frontmatter.title,
     description: post.frontmatter.description,
-    pubDate: post.frontmatter.date,
+    pubDate: new Date(post.frontmatter.date),
     link: `/posts/${getPostId(post.file)}`,
   })),
 });

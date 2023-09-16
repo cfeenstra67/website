@@ -16,7 +16,7 @@ export interface Props {
   project: Project;
 }
 
-function formatUrl(url) {
+function formatUrl(url: string): string {
   const urlObj = new URL(url);
   const path = urlObj.pathname === '/' ? '' : urlObj.pathname;
   let host = urlObj.hostname;
@@ -32,7 +32,9 @@ const { project } = Astro.props;
 <Card className={styles.projectCard}>
   <div>
     <div>
-      <a href={`/projects/${project.id}`}><h2>{project.title}</h2></a>
+      <a href={`/projects/${project.id}`}>
+        <h2 class="text-xl">{project.title}</h2>
+      </a>
     </div>
     <div>
       <div class={styles.githubIcon}></div>

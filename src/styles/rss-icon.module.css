@@ -1,0 +1,10 @@
+
+.rssIcon {
+  width: 24px;
+  height: 24px;
+  background-color: var(--text-primary);
+  mask: url(/icons/rss.svg) no-repeat center;
+  -webkit-mask-image: url(/icons/rss.svg);
+  -webkit-mask-position: center;
+  cursor: pointer;
+}

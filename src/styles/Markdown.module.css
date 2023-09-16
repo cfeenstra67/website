@@ -8,12 +8,42 @@
   margin-right: auto;
   max-height: 25rem;
   display: block;
-  margin-bottom: 1rem;
   background: var(--markdown-image-background);
+  margin-bottom: calc(var(--padding) * 4);
+  margin-top: calc(var(--padding) * 4);
+}
+
+.markdownContent p {
+  margin-bottom: calc(var(--padding) * 2);
+  margin-top: calc(var(--padding) * 2);
+}
+
+.markdownContent h1 {
+  @apply text-3xl font-bold;
+}
+
+.markdownContent h2 {
+  @apply text-2xl font-bold;
+}
+
+.markdownContent h3 {
+  @apply text-xl font-bold;
 }
 
 @media screen and (max-width: 780px) {
   .markdownContent img {
     max-height: 23rem !important;
+  }
+}
+
+.markdownContent blockquote {
+  margin-inline-start: 40px;
+  margin-inline-end: 40px;
+}
+
+@media screen and (max-width: 400px) {
+  .markdownContent blockquote {
+    margin-inline-start: 20px;
+    margin-inline-end: 20px;
   }
 }

@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import config from '../lib/config';
-import { Theme } from '../lib/theme';
-import { useTheme } from '../lib/theme-hook';
 import styles from '../styles/Navbar.module.css';
 import ThemePicker from './ThemePicker';
 
