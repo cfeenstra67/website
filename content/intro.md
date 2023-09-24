@@ -5,6 +5,8 @@ My name is Cam Feenstra, and I am a software engineer. I use this website to wri
 
 ![Photo of Me](/images/intro-me.jpg)
 
-My interests within the field of technology are fairly broad, but I'm particularly interested in managing cloud infrastructure and more generally developer tools. In 2021 a few [blog posts](/posts) about infrastructure as code after spending a few months last year building my own tool called [statey](https://github.com/cfeenstra67/statey)!
+My interests within the software field are pretty broad; I love writing code, and I've done work on many parts of the software stack: writing frontends, developing APIs, implementing data pipelines, setting up cloud infrastructure, and even training machine learning models.
 
-I also try to spend plenty of time not on the computer, whether that be hiking, biking, kayaking, or just hanging around outside. During the winter I also love skiing. The image of me above is from a trip I took with my family to hike the Inca Trail in Peru in 2018 (has it been that long already? I should probably update that photo... a job for another day).
+I use this site mainly to post projects I've worked on outside of work, but I've also posted links to recordings of some talks I've given about building software on top of large language models. Sometimes I also just have an idea I can't get out of my head, and I write a blog post about it here. If you're interested, check out the [posts](/posts) and [projects](/projects) pages to learn more.
+
+I also try to spend plenty of time not on the computer, whether that be travelling, hiking, biking, kayaking, or just hanging around outside. During the winter I also love skiing. The image of me above is from a trip I took with my amazing girlfriend to Greece in August 2023.
