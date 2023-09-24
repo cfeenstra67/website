@@ -19,7 +19,7 @@ export default function NavBar() {
       {/*<Navbar.Toggle aria-controls="site-nav" />*/}
 
       <div id="site-nav" className={styles.navBarItems}>
-        <a href="/posts">Blog Posts</a>
+        <a href="/posts">Posts</a>
 
         <a href="/projects">Projects</a>
 

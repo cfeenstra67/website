@@ -1,1 +1,1 @@
-Not much here at the moment, but I hope to add more over time. I've written my first couple of posts about the internals of infrastructure as code tools, check them out below!
+I don't post things here very frequently, but what's here is some combination of blog posts about projects I've worked on outside of my day job, links to talks I've given about building software with AI, and random musings about ideas that stick in my head for a while. You can read these posts to learn more about things I've built and how I think.
