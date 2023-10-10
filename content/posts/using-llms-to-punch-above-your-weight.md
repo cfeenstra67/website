@@ -1,7 +1,7 @@
 ---
 title: 'Using LLMs to Punch Above your Weight!'
 subtitle: Talk from the LLMs in Production Conference, April 2023
-date: '2022-06-11'
+date: '2023-06-11'
 description: In April 2023 I gave this talk at the LLMs in Production Conference. I talk about how Anzen has used large language models to help us rapidly build high-quality ML-powered features to solve difficult problems we've come across at a very low cost relative to training models from scratch.
 ---
 In April 2023 I was honored to be able to speak at the [LLMs in Production](https://home.mlops.community/public/events/llms-in-production-conference-2023-04-13) virtual conference put on by the MLOps Community. You can find the talk below:
