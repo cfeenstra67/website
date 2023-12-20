@@ -1,8 +1,8 @@
 ---
 title: 'Complex Dependencies in Infrastructure as Code'
-subtitle: Investigating edge cases with Terraform, Pulumi, CloudFront, and Statey
+subtitle: Investigating edge cases with Terraform, Pulumi, CloudFormation, and Statey
 date: '2021-04-13'
-description: This blog post describes how a number of how Terraform, Pulumi, CloudFront, and Statey handle certain complex dependency issues.
+description: This blog post describes how a number of how Terraform, Pulumi, CloudFormation, and Statey handle certain complex dependency issues.
 ---
 
 Infrastructure as code tools allow developers to automate their infrastructure in some incredible ways, but they also have their limitations. It may be surprising, but even some changes that may seem routine can actually cause these tools to attempt impossible operations. For instance, imagine you’re trying to create the resources defined by the following Terraform configuration:
