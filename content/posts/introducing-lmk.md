@@ -1,6 +1,5 @@
 ---
-title: Introducing LMK
-subtitle: Stop watching your code run
+title: 'Stop watching your code run: Introducing LMK'
 date: '2023-09-22'
 description: "In this post I discuss a new tool I've created called LMK that helps you monitor long-running processes and notify yourself when they finish. I talk about the pain I've experienced with long-running jobs that motivated building it."
 ---
