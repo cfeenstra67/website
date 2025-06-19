@@ -2,15 +2,23 @@ import * as mime from 'mime-types';
 import * as path from 'node:path';
 import * as aws from '@pulumi/aws';
 import * as pulumi from '@pulumi/pulumi';
-import { walkDirectory } from './utils';
+import * as fs from 'node:fs';
+import * as url from 'node:url';
 
-export = async () => {
+const dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
+async function* walkDirectory(dir: string): AsyncGenerator<string> {
+    for await (const d of await fs.promises.opendir(dir)) {
+        const entry = path.join(dir, d.name);
+        if (d.isDirectory()) yield* walkDirectory(entry);
+        else if (d.isFile()) yield entry;
+    }
+}
+
+export default async () => {
   const config = new pulumi.Config();
 
   const dnsName = config.require('dns-name');
-
-  const awsRegion = await aws.getRegion();
 
   const fullDnsName = `www.${dnsName}`;
 
@@ -74,7 +82,7 @@ export = async () => {
     ],
   });
 
-  const siteDir = path.join(__dirname, "../dist");
+  const siteDir = path.join(dirname, "./dist");
 
   const siteBucket = new aws.s3.Bucket(`${dnsName}-site`, {
     tags,
@@ -306,7 +314,7 @@ export = async () => {
       includeCookies: false,
       prefix: `${fullDnsName}/`
     },
-  });
+  }, { deleteBeforeReplace: true });
 
   for (const domain of [dnsName, fullDnsName]) {
     new aws.route53.Record(domain, {
