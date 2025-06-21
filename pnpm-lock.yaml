@@ -54,6 +54,9 @@ importers:
       '@pulumi/pulumi':
         specifier: ^3.175.0
         version: 3.175.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+      '@stackattack/aws':
+        specifier: 0.1.0-dev.38
+        version: 0.1.0-dev.38(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
       '@types/mime-types':
         specifier: ^3.0.1
         version: 3.0.1
@@ -78,6 +81,9 @@ importers:
       prettier:
         specifier: ^2.6.2
         version: 2.7.1
+      shared-infra:
+        specifier: github:cfeenstra67/shared-infra
+        version: https://codeload.github.com/cfeenstra67/shared-infra/tar.gz/d660050d4d021b99cfd3f27f68322950444b88a1(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@22.15.30)(typescript@5.8.3)
@@ -784,8 +790,14 @@ packages:
   '@protobufjs/utf8@1.1.0':
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
 
+  '@pulumi/aws-native@1.30.0':
+    resolution: {integrity: sha512-y0rjvfsHvuIh5Biixqk+p12FVGTWRNSrVA1p6zui99dkvMV/KX5/lh6dEBbwW3hxcNVrZn0frU9LHXSyFSLLZA==}
+
   '@pulumi/aws@6.82.1':
     resolution: {integrity: sha512-/7rqrvkg2WbuUyojmtJm/AnNmR2SQD4keUuvUF4sNrh77L2CoCI1lD4LA/xMyIDebGH3+x73rM+J4fDhwYRvZw==}
+
+  '@pulumi/command@1.1.0':
+    resolution: {integrity: sha512-ovVec+gXeqpcm76xwYYZvfJym8bG9NRvlBGQWbn0+c0fKQziZIjiv5V+AxTKfb+dLWKe7Otyt206L1IWq41hyw==}
 
   '@pulumi/pulumi@3.175.0':
     resolution: {integrity: sha512-15d34B01pkacNiMwX5pXKzo+jSls2UMQV9A754/Hudujml/zp1MDxEeTtgfRYX4r5WDppswoFvNK93RnbHCTWA==}
@@ -798,6 +810,9 @@ packages:
         optional: true
       typescript:
         optional: true
+
+  '@pulumi/random@4.18.2':
+    resolution: {integrity: sha512-jC0HfgkFKwgUGmocM7Tw6UyOrpLFXGO8kYfV6f5Q9R/yziaVxEVPQ0Uup2HfosDh926EZHJrt2EUIJHWCyOvFA==}
 
   '@rollup/pluginutils@5.1.4':
     resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
@@ -956,6 +971,12 @@ packages:
   '@sindresorhus/is@4.6.0':
     resolution: {integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==}
     engines: {node: '>=10'}
+
+  '@stackattack/aws@0.1.0-dev.36':
+    resolution: {integrity: sha512-QTVyku/Xft0xgVcBsz0DYg8lyAMmbwxBTer2xxRAhnDGAfS1rjocnxLxGNsz8RQM4lxt8ogcL5rXJkLz7tYt3Q==}
+
+  '@stackattack/aws@0.1.0-dev.38':
+    resolution: {integrity: sha512-1xLDZWEfQ8/O+bchH5RT+HnPesI77TrsT/lzGw/UWV6QmNRLEKxcEGXNAprrxyxJAVmonA1cfy1hAYnT7cy/iw==}
 
   '@swc/helpers@0.5.17':
     resolution: {integrity: sha512-5IKx/Y13RsYd+sauPb2x+U/xZikHjolzfuDgTAl/Tdf3Q8rslRvC19NKDLgAJQ6wsqADk10ntlv08nPFw/gO/A==}
@@ -2254,8 +2275,16 @@ packages:
     resolution: {integrity: sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==}
     engines: {node: '>=8.6'}
 
+  mime-db@1.52.0:
+    resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
+    engines: {node: '>= 0.6'}
+
   mime-db@1.54.0:
     resolution: {integrity: sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ==}
+    engines: {node: '>= 0.6'}
+
+  mime-types@2.1.35:
+    resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
     engines: {node: '>= 0.6'}
 
   mime-types@3.0.1:
@@ -2900,6 +2929,10 @@ packages:
     resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
     engines: {node: '>=10'}
     hasBin: true
+
+  shared-infra@https://codeload.github.com/cfeenstra67/shared-infra/tar.gz/d660050d4d021b99cfd3f27f68322950444b88a1:
+    resolution: {tarball: https://codeload.github.com/cfeenstra67/shared-infra/tar.gz/d660050d4d021b99cfd3f27f68322950444b88a1}
+    version: 0.0.0
 
   sharp@0.33.5:
     resolution: {integrity: sha512-haPVm1EkS9pgvHrQ/F3Xy+hgcuMV0Wm9vfIBSiwZ05k+xgb0PkBQpGsAA/oWdDobNaZTH5ppvHtzCFbnSEwHVw==}
@@ -4254,10 +4287,28 @@ snapshots:
 
   '@protobufjs/utf8@1.1.0': {}
 
+  '@pulumi/aws-native@1.30.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)':
+    dependencies:
+      '@pulumi/pulumi': 3.175.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+      - ts-node
+      - typescript
+
   '@pulumi/aws@6.82.1(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)':
     dependencies:
       '@pulumi/pulumi': 3.175.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
       mime: 2.6.0
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+      - ts-node
+      - typescript
+
+  '@pulumi/command@1.1.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)':
+    dependencies:
+      '@pulumi/pulumi': 3.175.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
     transitivePeerDependencies:
       - bluebird
       - supports-color
@@ -4300,6 +4351,15 @@ snapshots:
     transitivePeerDependencies:
       - bluebird
       - supports-color
+
+  '@pulumi/random@4.18.2(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)':
+    dependencies:
+      '@pulumi/pulumi': 3.175.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+      - ts-node
+      - typescript
 
   '@rollup/pluginutils@5.1.4(rollup@4.42.0)':
     dependencies:
@@ -4435,6 +4495,34 @@ snapshots:
       '@sigstore/protobuf-specs': 0.3.3
 
   '@sindresorhus/is@4.6.0': {}
+
+  '@stackattack/aws@0.1.0-dev.36(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)':
+    dependencies:
+      '@pulumi/aws': 6.82.1(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+      '@pulumi/aws-native': 1.30.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+      '@pulumi/command': 1.1.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+      '@pulumi/pulumi': 3.175.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+      '@pulumi/random': 4.18.2(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+      mime-types: 2.1.35
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+      - ts-node
+      - typescript
+
+  '@stackattack/aws@0.1.0-dev.38(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)':
+    dependencies:
+      '@pulumi/aws': 6.82.1(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+      '@pulumi/aws-native': 1.30.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+      '@pulumi/command': 1.1.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+      '@pulumi/pulumi': 3.175.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+      '@pulumi/random': 4.18.2(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+      mime-types: 2.1.35
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+      - ts-node
+      - typescript
 
   '@swc/helpers@0.5.17':
     dependencies:
@@ -6053,7 +6141,13 @@ snapshots:
       braces: 3.0.2
       picomatch: 2.3.1
 
+  mime-db@1.52.0: {}
+
   mime-db@1.54.0: {}
+
+  mime-types@2.1.35:
+    dependencies:
+      mime-db: 1.52.0
 
   mime-types@3.0.1:
     dependencies:
@@ -6728,6 +6822,16 @@ snapshots:
   semver@6.3.0: {}
 
   semver@7.7.2: {}
+
+  shared-infra@https://codeload.github.com/cfeenstra67/shared-infra/tar.gz/d660050d4d021b99cfd3f27f68322950444b88a1(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3):
+    dependencies:
+      '@pulumi/pulumi': 3.175.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+      '@stackattack/aws': 0.1.0-dev.36(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+      - ts-node
+      - typescript
 
   sharp@0.33.5:
     dependencies:

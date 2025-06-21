@@ -1,5 +1,9 @@
 {
   "extends": "astro/tsconfigs/strict",
+  "ts-node": {
+    "ignore": ["\\/node_modules\\/(?!.*shared-infra)"]
+  },
+  "include": ["./node_modules/shared-infra/*.ts", "*.ts", "./src"],
   "compilerOptions": {
     "jsx": "react-jsx"
   }

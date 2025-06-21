@@ -29,6 +29,7 @@
   "devDependencies": {
     "@pulumi/aws": "^6.82.1",
     "@pulumi/pulumi": "^3.175.0",
+    "@stackattack/aws": "0.1.0-dev.38",
     "@types/mime-types": "^3.0.1",
     "@types/node": "^22.15.30",
     "@types/react": "^18.0.21",
@@ -37,6 +38,7 @@
     "mime-types": "^3.0.1",
     "path-browserify": "^1.0.1",
     "prettier": "^2.6.2",
+    "shared-infra": "github:cfeenstra67/shared-infra",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }

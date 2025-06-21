@@ -4,3 +4,4 @@ config:
   blog:dns-name: camfeenstra.com
   blog:gmail-verification-code:
     secure: v1:VJnthNp/ZFRxc1TS:qxi9bQPgXrkXvhJVvcQ76X75XuLBzhFPnCe7xmnsuAvuE+jYm+odNDAv9YKqeYoTXVfuMqUojexUnzbI6DqC1MWt+jFj8J1vLL55ysx7a2RFCHlsAEe7FN+aHsvsyLw=
+  blog:shared-stack: cfeenstra67/infra/shared
