@@ -16,9 +16,9 @@ export default () => {
 
   const bucket = saws.bucket(ctx);
 
-  saws.bucketDirectory(ctx, {
+  saws.bucketFiles(ctx, {
     bucket,
-    directory: './dist',
+    paths: ['./dist'],
   });
 
   saws.staticSite(ctx, {
