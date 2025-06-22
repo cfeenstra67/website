@@ -55,8 +55,8 @@ importers:
         specifier: ^3.175.0
         version: 3.175.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
       '@stackattack/aws':
-        specifier: 0.1.0-dev.40
-        version: 0.1.0-dev.40(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
+        specifier: 0.1.0-dev.44
+        version: 0.1.0-dev.44(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
       '@types/mime-types':
         specifier: ^3.0.1
         version: 3.0.1
@@ -975,8 +975,8 @@ packages:
   '@stackattack/aws@0.1.0-dev.36':
     resolution: {integrity: sha512-QTVyku/Xft0xgVcBsz0DYg8lyAMmbwxBTer2xxRAhnDGAfS1rjocnxLxGNsz8RQM4lxt8ogcL5rXJkLz7tYt3Q==}
 
-  '@stackattack/aws@0.1.0-dev.40':
-    resolution: {integrity: sha512-OAXXT3lOLHs9quCzWZ5aWG8vFy7xIrTXlipGvsFCXEKRCRmxQb9NQUbmo8+4IBeorkG8bW1x/ewlaxeI9d7rvw==}
+  '@stackattack/aws@0.1.0-dev.44':
+    resolution: {integrity: sha512-Ptd7twUnpxAMW354zqgc+hlqRhIM/4ryVPvMsVK9ryp6HvHLvD3gUGLr0MZeNplzv5K/NrW8os3DBumswNObvg==}
 
   '@swc/helpers@0.5.17':
     resolution: {integrity: sha512-5IKx/Y13RsYd+sauPb2x+U/xZikHjolzfuDgTAl/Tdf3Q8rslRvC19NKDLgAJQ6wsqADk10ntlv08nPFw/gO/A==}
@@ -4510,7 +4510,7 @@ snapshots:
       - ts-node
       - typescript
 
-  '@stackattack/aws@0.1.0-dev.40(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)':
+  '@stackattack/aws@0.1.0-dev.44(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)':
     dependencies:
       '@pulumi/aws': 6.82.1(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
       '@pulumi/aws-native': 1.30.0(ts-node@10.9.2(@types/node@22.15.30)(typescript@5.8.3))(typescript@5.8.3)
