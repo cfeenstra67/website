@@ -1,0 +1,40 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::081142152120:role/blog-dev-github-role-8a9f298
+          aws-region: us-east-2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: pnpm
+      - name: Set up dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm build
+      - uses: pulumi/actions@v3
+        with:
+          command: up
+          stack-name: dev
+          refresh: true
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}

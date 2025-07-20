@@ -29,7 +29,7 @@
   "devDependencies": {
     "@pulumi/aws": "^6.82.1",
     "@pulumi/pulumi": "^3.175.0",
-    "@stackattack/aws": "0.1.0-dev.48",
+    "@stackattack/aws": "0.6.0",
     "@types/mime-types": "^3.0.1",
     "@types/node": "^22.15.30",
     "@types/react": "^18.0.21",
